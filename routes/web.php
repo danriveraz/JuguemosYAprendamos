@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('Principal/login');
 });
+
+Route::resource('paciente', 'PacienteController');
