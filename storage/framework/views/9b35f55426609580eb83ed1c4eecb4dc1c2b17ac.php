@@ -20,7 +20,7 @@
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet">
-  
+  <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -30,25 +30,62 @@
 </head>
 
 <body>
-  @include('flash::message')
+  <?php echo $__env->make('flash::message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" id="formLogin" autocomplete="on" method="post" action="{{ route('login') }}">
-        {{ csrf_field() }}
+      <!--<form class="form-login" id="formLogin" autocomplete="on" method="post" action="<?php echo e(route('login')); ?>">
+        <?php echo e(csrf_field()); ?>-->
+        <form class="form-login" method="POST" action="<?php echo e(route('login')); ?>">
+        <?php echo csrf_field(); ?>
         <h2 class="form-login-heading">Ingeresa ahora</h2>
+
         <div class="login-wrap">
-          <input id="email" name="email" type="email" class="form-control" placeholder="Correo electronico" autofocus required>
-          <br>
-          <input id="password" name="password" type="password" class="form-control" placeholder="Contraseña" required>
-          <label class="checkbox" align="center">
-            <a data-toggle="modal" href="login.html#recuperarPassword"> ¿Olvidaste tu contraseña?</a>
-            </span>
-            </label>
-          <button class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> Entrar</button>
-          <hr>
+            <div>
+                <input id="email" type="email" class="form-control <?php if ($errors->has('email')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('email'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="email" placeholder="Correo electronico" autofocus>
+                <div class="text-center">
+                    <?php if ($errors->has('email')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('email'); ?>
+                        <span class="invalid-feedback" role="alert">
+                            <strong><?php echo e($message); ?></strong>
+                        </span>
+                    <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>
+                </div>
+            </div>
+            <br>
+            <div>
+                <input id="password" type="password" class="form-control <?php if ($errors->has('password')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('password'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>" name="password" required autocomplete="current-password" placeholder="Contraseña">
+                <div class="text-center">
+                <?php if ($errors->has('password')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('password'); ?>
+                    <span class="invalid-feedback" role="alert">
+                        <strong><?php echo e($message); ?></strong>
+                    </span>
+                <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>
+                </div>
+            </div>
+            <label class="checkbox" align="center">
+                <span>
+                    <a data-toggle="modal" href="#recuperarPassword"> ¿Olvidaste tu contraseña?</a>
+                </span>
+                </label>
+            <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Entrar</button>
           <!-- 
           <div class="login-social-link centered">
             <p>or you can sign in via your social network</p>
@@ -56,34 +93,35 @@
             <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
           </div>
           -->
-          <div class="registration">
-            ¿Todavía no tienes una cuenta?<br/>
-            <a data-toggle="modal" href="login.html#registro">
-              Crear cuenta
-              </a>
-          </div>
-        </div>
-        <!-- Modal -->
-        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="recuperarPassword" class="modal fade">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Recuperar contraseña</h4>
-              </div>
-              <div class="modal-body">
-                <p>Ingresa tu correo electronico abajo para recuperar contraseña</p>
-                <input type="text" name="email" placeholder="Correo" autocomplete="off" class="form-control placeholder-no-fix">
-              </div>
-              <div class="modal-footer">
-                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
-                <button class="btn btn-theme" type="button">Enviar</button>
-              </div>
+            <div class="registration">
+                ¿Todavía no tienes una cuenta?<br/>
+                <a data-toggle="modal" href="#registro">
+                    Crear cuenta
+                </a>
             </div>
-          </div>
+            </div>
+        </form>
+
+        <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="recuperarPassword" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Recuperar contraseña</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Ingresa tu correo electronico abajo para recuperar contraseña</p>
+                        <input type="text" name="emailRecuperar" placeholder="Correo" autocomplete="off" class="form-control placeholder-no-fix">
+                    </div>
+                    <div class="modal-footer">
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                        <button class="btn btn-theme" type="button">Enviar</button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- modal -->
-      </form>
+
+
       <!-- MODAL REGISTRO -->
       <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="registro" class="modal fade">
         <div class="modal-dialog">
@@ -92,8 +130,9 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title" align="center">Registro</h4>
             </div>
-            <form  id="formRegistro" autocomplete="on" method="post" action="{{url('Auth/register')}}">
-            {{ csrf_field() }}
+            <form  id="formRegistro" autocomplete="on" method="post" action="<?php echo e(url('Auth/register')); ?>">
+            <?php echo e(csrf_field()); ?>
+
             <div class="modal-body">
               <input name="regUsuario" id="regUsuario"  type="text" class="form-control" placeholder="Usuario" required="true" autofocus >
               <br>
@@ -162,7 +201,6 @@
           if($("#regPassword").val() == $("#regConfPass").val()){
             if($("#validarUsuario").val() == "true" && $("#validarEmail").val() == "true"){
               if($("#selectTipoUsuario option:selected").text() == "Terapia en casa"){
-                alert("terapia en casa");
                 $("#formRegistro").submit();
               }else if($("#selectTipoUsuario option:selected").text() == "Terapeuta"){
                 if($("#regCode").val() == $("#code").val()){
@@ -244,3 +282,94 @@
 </body>
 
 </html>
+<!--
+   <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header"><?php echo e(__('Login')); ?></div>
+
+                <div class="card-body">
+                    <form method="POST" action="<?php echo e(route('login')); ?>">
+                        <?php echo csrf_field(); ?>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right"><?php echo e(__('E-Mail Address')); ?></label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control <?php if ($errors->has('email')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('email'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="email" autofocus>
+
+                                <?php if ($errors->has('email')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('email'); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right"><?php echo e(__('Password')); ?></label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control <?php if ($errors->has('password')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('password'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>" name="password" required autocomplete="current-password">
+
+                                <?php if ($errors->has('password')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('password'); ?>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong><?php echo e($message); ?></strong>
+                                    </span>
+                                <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>>
+
+                                    <label class="form-check-label" for="remember">
+                                        <?php echo e(__('Remember Me')); ?>
+
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <?php echo e(__('Login')); ?>
+
+                                </button>
+
+                                <?php if(Route::has('password.request')): ?>
+                                    <a class="btn btn-link" href="<?php echo e(route('password.request')); ?>">
+                                        <?php echo e(__('Forgot Your Password?')); ?>
+
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/Auth/login.blade.php ENDPATH**/ ?>

@@ -30,14 +30,15 @@
 </head>
 
 <body>
-  @include('flash::message')
+  <?php echo $__env->make('flash::message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" id="formLogin" autocomplete="on" method="post" action="{{ route('login') }}">
-        {{ csrf_field() }}
+      <form class="form-login" id="formLogin" autocomplete="on" method="post" action="<?php echo e(route('login')); ?>">
+        <?php echo e(csrf_field()); ?>
+
         <h2 class="form-login-heading">Ingeresa ahora</h2>
         <div class="login-wrap">
           <input id="email" name="email" type="email" class="form-control" placeholder="Correo electronico" autofocus required>
@@ -92,8 +93,9 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
               <h4 class="modal-title" align="center">Registro</h4>
             </div>
-            <form  id="formRegistro" autocomplete="on" method="post" action="{{url('Auth/register')}}">
-            {{ csrf_field() }}
+            <form  id="formRegistro" autocomplete="on" method="post" action="<?php echo e(url('Auth/register')); ?>">
+            <?php echo e(csrf_field()); ?>
+
             <div class="modal-body">
               <input name="regUsuario" id="regUsuario"  type="text" class="form-control" placeholder="Usuario" required="true" autofocus >
               <br>
@@ -244,3 +246,4 @@
 </body>
 
 </html>
+<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/Principal/login.blade.php ENDPATH**/ ?>

@@ -10,13 +10,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'nombreCompleto', 'usuario', 'email', 'password', 'tipoUsuario', 'passTipoUsuario' , 'pacienteActual',
     ];
 
     /**
@@ -36,4 +37,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeEmailSearch($query, $email){
+      return $query->where('email', '=', $email);
+    }
+
+    public function scopeUserSearch($query, $usuario){
+      return $query->where('usuario', '=', $usuario);
+    }
 }

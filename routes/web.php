@@ -12,7 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('Principal/login');
+    return view('Auth/login');
 });
 
+Route::post('Auth/register', 'Auth\RegisterController@postRegister');
+
+Route::get('username','Auth\RegisterController@verificarUser');
+Route::get('email','Auth\RegisterController@verificarEmail');
+
 Route::resource('paciente', 'PacienteController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
