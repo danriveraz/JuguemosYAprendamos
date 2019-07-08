@@ -15,13 +15,16 @@ class TablaPaciente extends Migration
     {
         Schema::create('paciente', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('password');
-            $table->string('nombreCompleto' , 40);
-            $table->string('edad' , 40);
+            $table->string('nombrePaciente' , 40);
+            $table->bigInteger('idPaciente');
+            $table->unsignedInteger('edad');
+            $table->string('evaluacionMedica');
             $table->string('nombreAcudiente' , 40);
+            $table->bigInteger('idAcudiente');
             $table->string('parentezco' , 40);
-            $table->string('telefonoAcudiente' , 40);
-            $table->string('direccionAcudiente' , 40);
+            $table->bigInteger('telefono');
+            $table->string('direccion' , 40);
+            $table->string('ciudad',40);
             
             $table->timestamps();
         });

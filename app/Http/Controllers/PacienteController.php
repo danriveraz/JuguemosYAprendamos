@@ -15,11 +15,11 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::orderBy('nombreCompleto','ASC')->get();
+        $pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
 
         //dd($pacientes[1]->id);
         
-        return view('Paciente.index')->with('pacientes', $pacientes);
+        return view('paciente.index')->with('pacientes', $pacientes);
     }
 
     /**
@@ -27,9 +27,23 @@ class PacienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+
+        $paciente = new Paciente();
+        $paciente->nombrePaciente = $request->nombrePaciente;
+        $paciente->idPaciente = 0;
+        $paciente->edad = $request->edad;
+        $paciente->evaluacionMedica = "";
+        $paciente->nombreAcudiente = $request->nombreAcudiente;
+        $paciente->idAcudiente = 0;
+        $paciente->parentezco = $request->parentezco;
+        $paciente->telefono = $request->telefono;
+        $paciente->direccion = $request->direccion;
+        $paciente->ciudad = "";
+
+
+        $paciente->save();
+        return redirect('paciente');
     }
 
     /**
@@ -62,7 +76,7 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -74,7 +88,22 @@ class PacienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $paciente = Paciente::find($id);
+        $paciente->nombrePaciente = $request->nombrePaciente;
+        $paciente->idPaciente = "";
+        $paciente->edad = $request->edad;
+        $paciente->evaluacionMedica = "";
+        $paciente->nombreAcudiente = $request->nombreAcudiente;
+        $paciente->idAcudiente = "";
+        $paciente->parentezco = $request->parentezco;
+        $paciente->telefono = $request->telefono;
+        $paciente->direccion = $request->direccion;
+        $paciente->ciudad = "";
+
+
+        $paciente->save();
+
+        return redirect('paciente');
     }
 
     /**
@@ -85,6 +114,9 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $paciente = Paciente::find($id);
+        $paciente->delete();
+
+        return redirect('paciente');
     }
 }

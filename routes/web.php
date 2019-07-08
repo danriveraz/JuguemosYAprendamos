@@ -21,6 +21,15 @@ Route::get('username','Auth\RegisterController@verificarUser');
 Route::get('email','Auth\RegisterController@verificarEmail');
 
 Route::resource('paciente', 'PacienteController');
+Route::get('paciente/{id}/destroy', [
+	'uses' => 'PacienteController@destroy',
+	'as' => 'paciente.destroy'
+]);
+
+Route::get('paciente/{id}/update', [
+	'uses' => 'PacienteController@update',
+	'as' => 'paciente.update'
+]);
 
 Auth::routes();
 

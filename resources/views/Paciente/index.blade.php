@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+  <title>Pacientes</title>
 
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
@@ -366,7 +367,79 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-user"></i> Pacientes</h3>
+        <div>
+          <div class="row mc">
+            <div class="col-xs-12 col-sm-6 col-md-8">
+              <h3><i class="fa fa-user"></i> Pacientes Actuales</h3>
+            </div>
+            <div class="col-xs-6 col-md-4" align="center">
+              <br>
+              <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#modalPaciente"><i class="fa fa-plus"></i> Nuevo</button>
+
+              <div class="modal fade" id="modalPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title" id="myModalLabel">Nuevo paciente</h4>
+                    </div>
+                    <div class="modal-body">
+
+                      <form class="form-horizontal tasi-form" method="GET"  action="{{ route('paciente.create') }}">
+                        <div class="form-group">
+                          <h4> Datos del Paciente</h4>
+                          <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="nombrePaciente">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 col-sm-2 control-label">Edad</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="edad">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <h4> Datos del Acudiente</h4>
+                          <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="nombreAcudiente">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 col-sm-2 control-label">Parentezco</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="parentezco">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 col-sm-2 control-label">Teléfono</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="telefono">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 col-sm-2 control-label">Dirección</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="direccion">
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                      <button type="reset" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary" >Registrar</button>
+                    </div>
+                      </form>
+
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <br>
+        </div>
         <div class="row mb">
           <!-- page start-->
           <div class="content-panel">
@@ -374,7 +447,7 @@
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
-                    <th class="hidden-phone">Nomre</th>
+                    <th class="hidden-phone">Nombre</th>
                     <th class="hidden-phone">Edad</th>
                     <th class="hidden-phone">Nombre acudiente</th>
                     <th class="hidden-phone">Parentezco</th>
@@ -387,22 +460,105 @@
                   @if(!empty($pacientes))
                     @foreach($pacientes as $paciente)
                       <tr class="gradeA">
-                        <td class="hidden-phone">{{$paciente->nombreCompleto}}</td>
+                        <td class="hidden-phone">{{$paciente->nombrePaciente}}</td>
                         <td class="center hidden-phone">{{$paciente->edad}}</td>
                         <td class="hidden-phone">{{$paciente->nombreAcudiente}}</td>
                         <td class="hidden-phone">{{$paciente->parentezco}}</td>
-                        <td class="center hidden-phone">{{$paciente->telefonoAcudiente}}</td>
-                        <td class="center hidden-phone">{{$paciente->direccionAcudiente}}</td>
+                        <td class="center hidden-phone">{{$paciente->telefono}}</td>
+                        <td class="center hidden-phone">{{$paciente->direccion}}</td>
                         <td>
-                          <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                          <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                          <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                          <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editModal{{$paciente->id}}"><i class="fa fa-pencil"></i></button>
+
+                          <div class="modal fade" id="editModal{{$paciente->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                  <h4 class="modal-title" id="myModalLabel">Paciente {{$paciente->nombrePaciente}}</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                  <form class="form-horizontal tasi-form" method="GET"  action="{{ route('paciente.update', $paciente->id) }}">
+                                    <div class="form-group">
+                                      <h4> Datos del Paciente</h4>
+                                      <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nombrePaciente" value="{{$paciente->nombrePaciente}}">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-sm-2 col-sm-2 control-label">Edad</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="edad" value="{{$paciente->edad}}">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <h4> Datos del Acudiente</h4>
+                                      <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="nombreAcudiente" value="{{$paciente->nombreAcudiente}}">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-sm-2 col-sm-2 control-label">Parentezco</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="parentezco" value="{{$paciente->parentezco}}">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-sm-2 col-sm-2 control-label">Teléfono</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="telefono" value="{{$paciente->telefono}}">
+                                      </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <label class="col-sm-2 col-sm-2 control-label">Dirección</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="direccion" value="{{$paciente->direccion}}">
+                                      </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="reset" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                      <button type="submit" class="btn btn-primary" >Actualizar</button>
+                                    </div>
+                                  </form>
+
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+
+                          <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$paciente->id}}"><i class="fa fa-trash-o "></i></button>
+
+                          <div class="modal fade" id="deleteModal{{$paciente->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                  <h4 class="modal-title" id="myModalLabel">Paciente {{$paciente->nombrePaciente}}</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <h5>¿Está seguro de eliminar el paciente seleccionado?</h5>
+                                    <div class="modal-footer">
+                                      <button type="reset" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                      <a href="{{ route('paciente.destroy', $paciente->id) }}" class="btn btn-primary">Confirmar</a>
+                                    </div>
+
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+
+
                         </td>
                       </tr>
                     @endforeach
                   @else
                   <tr>
-                    <td colspan="8">No hay registro !!</td>
+                    <td colspan="8">No hay registros !!</td>
                   </tr>
                   @endif
                 </tbody>
@@ -439,6 +595,41 @@
     </footer>
     <!--footer end-->
   </section>
+
+  <script type="text/javascript">
+    function eliminar(id) {
+
+      var url = "127.0.0.1:8000/paciente/eliminar";
+
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data:{
+          id: id
+        },
+        success: function(){
+            //$("#"+id).remove();
+            alert("Insumo eliminado exitosamente.");
+        },
+        error: function(data){
+          alert('Ooops disculpanos, hemos tenido un error al eliminar tu insumo. Error: ' + data);
+        }
+      });
+    }
+  </script>
+
+  <script src="lib/jquery/jquery.min.js"></script>
+
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="lib/jquery.scrollTo.min.js"></script>
+  <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="lib/common-scripts.js"></script>
+  <!--script for this page-->
+  <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
+  <script type="text/javascript" src="lib/gritter-conf.js"></script>
+
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="lib/advanced-datatable/js/jquery.js"></script>
