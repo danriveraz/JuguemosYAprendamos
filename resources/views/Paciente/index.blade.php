@@ -39,22 +39,26 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
     <!--header start-->
-    <header class="header black-bg">
+    <header class="header black-bg" style="text-align: center;">
+      <!--
       <div class="sidebar-toggle-box">
         <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
       </div>
+    -->
       <!--logo start-->
-      <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+      <a href="index.html" class="logo" ><b>JUGUEMOS &<span> APRENDAMOS</span></b></a>
       <!--logo end-->
       <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
           <!-- settings start -->
+          <!--
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
               <i class="fa fa-tasks"></i>
               <span class="badge bg-theme">4</span>
               </a>
+            
             <ul class="dropdown-menu extended tasks-bar">
               <div class="notify-arrow notify-arrow-green"></div>
               <li>
@@ -116,9 +120,12 @@
                 <a href="#">See All Tasks</a>
               </li>
             </ul>
+          
           </li>
+          -->
           <!-- settings end -->
           <!-- inbox dropdown start-->
+          <!--
           <li id="header_inbox_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
               <i class="fa fa-envelope-o"></i>
@@ -182,8 +189,10 @@
               </li>
             </ul>
           </li>
+          -->
           <!-- inbox dropdown end -->
           <!-- notification dropdown start-->
+          <!--
           <li id="header_notification_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
               <i class="fa fa-bell-o"></i>
@@ -227,15 +236,25 @@
               </li>
             </ul>
           </li>
+        -->
           <!-- notification dropdown end -->
         </ul>
         <!--  notification end -->
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="{{ route('logout') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+            </form>
+          </li>
         </ul>
       </div>
+      
     </header>
     <!--header end-->
     <!-- **********************************************************************************************************************************************************
@@ -246,6 +265,7 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
+          <!--
           <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
           <h5 class="centered">Sam Soffes</h5>
           <li class="mt">
@@ -254,6 +274,8 @@
               <span>Dashboard</span>
               </a>
           </li>
+        -->
+        <!--
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-desktop"></i>
@@ -266,6 +288,8 @@
               <li><a href="font_awesome.html">Font Awesome</a></li>
             </ul>
           </li>
+        -->
+        <!--
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-cogs"></i>
@@ -281,6 +305,8 @@
               <li><a href="file_upload.html">Multiple File Upload</a></li>
             </ul>
           </li>
+         --> 
+         <!--
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-book"></i>
@@ -298,6 +324,8 @@
               <li><a href="500.html">500 Error</a></li>
             </ul>
           </li>
+         --> 
+         <!--
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-tasks"></i>
@@ -310,10 +338,11 @@
               <li><a href="contactform.html">Contact Form</a></li>
             </ul>
           </li>
+        -->  
           <li class="sub-menu">
             <a class="active" href="javascript:;">
               <i class="fa fa-th"></i>
-              <span>Data Tables</span>
+              <span>Pacientes</span>
               </a>
             <ul class="sub">
               <li><a href="basic_table.html">Basic Table</a></li>
@@ -321,6 +350,7 @@
               <li class="active"><a href="advanced_table.html">Advanced Table</a></li>
             </ul>
           </li>
+<!--
           <li>
             <a href="inbox.html">
               <i class="fa fa-envelope"></i>
@@ -328,6 +358,7 @@
               <span class="label label-theme pull-right mail-info">2</span>
               </a>
           </li>
+          
           <li class="sub-menu">
             <a href="javascript:;">
               <i class=" fa fa-bar-chart-o"></i>
@@ -356,6 +387,7 @@
               <span>Google Maps </span>
               </a>
           </li>
+         --> 
         </ul>
         <!-- sidebar menu end-->
       </div>
