@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -340,17 +339,52 @@
           </li>
         -->  
           <li class="sub-menu">
-            <a class="active" href="javascript:;">
+            <a class="active">
               <i class="fa fa-th"></i>
               <span>Pacientes</span>
               </a>
             <ul class="sub">
-              <li><a href="basic_table.html">Basic Table</a></li>
-              <li><a href="responsive_table.html">Responsive Table</a></li>
-              <li class="active"><a href="advanced_table.html">Advanced Table</a></li>
+              <li class="active"><a>Seleccionar paciente</a>
+              </li>
             </ul>
           </li>
-<!--
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class=" fa fa-rocket"></i>
+              <span>Nivel 1 (Letra P)</span>
+              </a>
+            <ul class="sub">
+              <li><a href="morris.html">Postura</a></li>
+              <li><a href="chartjs.html">Cara</a></li>
+              <li><a href="flot_chart.html">Sonido</a></li>
+              <li><a href="xchart.html">Palabras</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class=" fa fa-rocket"></i>
+              <span>Nivel (Letra B)</span>
+              </a>
+            <ul class="sub">
+              <li><a href="morris.html">Postura</a></li>
+              <li><a href="chartjs.html">Cara</a></li>
+              <li><a href="flot_chart.html">Sonido</a></li>
+              <li><a href="xchart.html">Palabras</a></li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class=" fa fa-rocket"></i>
+              <span>Nivel (Letra M)</span>
+              </a>
+            <ul class="sub">
+              <li><a href="morris.html">Postura</a></li>
+              <li><a href="chartjs.html">Cara</a></li>
+              <li><a href="flot_chart.html">Sonido</a></li>
+              <li><a href="xchart.html">Palabras</a></li>
+            </ul>
+          </li>
+<!--      
           <li>
             <a href="inbox.html">
               <i class="fa fa-envelope"></i>
@@ -653,19 +687,15 @@
   <script src="lib/jquery/jquery.min.js"></script>
 
   <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-  <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
-  <script src="lib/jquery.scrollTo.min.js"></script>
+
   <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
   <!--common script for all pages-->
-  <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
   <script type="text/javascript" src="lib/gritter/js/jquery.gritter.js"></script>
   <script type="text/javascript" src="lib/gritter-conf.js"></script>
 
   <!-- js placed at the end of the document so the pages load faster -->
-  <script src="lib/jquery/jquery.min.js"></script>
   <script type="text/javascript" language="javascript" src="lib/advanced-datatable/js/jquery.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
   <script class="include" type="text/javascript" src="lib/jquery.dcjqaccordion.2.7.js"></script>
   <script src="lib/jquery.scrollTo.min.js"></script>
   <script src="lib/jquery.nicescroll.js" type="text/javascript"></script>
