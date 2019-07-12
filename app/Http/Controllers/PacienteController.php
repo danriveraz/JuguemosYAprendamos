@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Paciente;
+use App\User;
 
 class PacienteController extends Controller
 {
@@ -16,10 +17,16 @@ class PacienteController extends Controller
     public function index()
     {
         $pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
-
-        //dd($pacientes[1]->id);
+        $userPA = \Auth::user()->pacienteActual;
+        $paciente = Paciente::Search($userPA)->get()->first();
+        $nombrePaciente = "";
+        if($paciente != null){
+            $nombrePaciente = $paciente->nombrePaciente;
+        }
         
-        return view('paciente.index')->with('pacientes', $pacientes);
+        return view('paciente.index')
+        ->with('pacientes', $pacientes)
+        ->with('nombrePaciente' , $nombrePaciente);
     }
 
     /**
@@ -102,6 +109,15 @@ class PacienteController extends Controller
 
 
         $paciente->save();
+
+        return redirect('paciente');
+    }
+
+    public function select(Request $request, $id)
+    {
+        $userActual = \Auth::user();
+        $userActual->pacienteActual = $id;
+        $userActual->save();
 
         return redirect('paciente');
     }

@@ -31,6 +31,12 @@ Route::get('paciente/{id}/update', [
 	'as' => 'paciente.update'
 ]);
 
+Route::get('paciente/{id}/select', [
+	'uses' => 'PacienteController@select',
+	'as' => 'paciente.select'
+]);
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

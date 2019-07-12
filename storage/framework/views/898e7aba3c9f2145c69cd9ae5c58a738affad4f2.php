@@ -265,16 +265,11 @@
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-          <!--
-          <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">Sam Soffes</h5>
-          <li class="mt">
-            <a href="index.html">
-              <i class="fa fa-dashboard"></i>
-              <span>Dashboard</span>
-              </a>
-          </li>
-        -->
+          <?php if($nombrePaciente != ""): ?>
+          <h5 class="centered">Trabajando con:</h5>
+          <h5 class="centered"><?php echo e($nombrePaciente); ?></h5>
+          <?php endif; ?>
+        
         <!--
           <li class="sub-menu">
             <a href="javascript:;">
@@ -437,7 +432,7 @@
         <div>
           <div class="row mc">
             <div class="col-xs-12 col-sm-6 col-md-8">
-              <h3><i class="fa fa-user"></i> Pacientes Actuales</h3>
+              <h3><i class="fa fa-user"></i> Pacientes Registrados</h3>
             </div>
             <div class="col-xs-6 col-md-4" align="center">
               <br>
@@ -618,6 +613,8 @@
                               </div>
                             </div>
                           </div>
+
+                          <a class="btn btn-primary btn-xs" href="<?php echo e(route('paciente.select', $paciente->id)); ?>"><i class="fa fa-check " title="Seleccionar Paciente"></i></a>
 
 
                         </td>
