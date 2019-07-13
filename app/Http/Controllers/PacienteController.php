@@ -38,15 +38,15 @@ class PacienteController extends Controller
 
         $paciente = new Paciente();
         $paciente->nombrePaciente = $request->nombrePaciente;
-        $paciente->idPaciente = 0;
+        $paciente->idPaciente = $request->idPaciente;
         $paciente->edad = $request->edad;
-        $paciente->evaluacionMedica = "";
+        $paciente->evaluacionMedica = $request->evaluacionMedica;
         $paciente->nombreAcudiente = $request->nombreAcudiente;
-        $paciente->idAcudiente = 0;
+        $paciente->idAcudiente = $request->idAcudiente;
         $paciente->parentezco = $request->parentezco;
         $paciente->telefono = $request->telefono;
         $paciente->direccion = $request->direccion;
-        $paciente->ciudad = "";
+        $paciente->ciudad = $request->ciudad;
 
 
         $paciente->save();
@@ -97,15 +97,15 @@ class PacienteController extends Controller
     {
         $paciente = Paciente::find($id);
         $paciente->nombrePaciente = $request->nombrePaciente;
-        $paciente->idPaciente = "";
+        $paciente->idPaciente = $request->idPaciente;
         $paciente->edad = $request->edad;
-        $paciente->evaluacionMedica = "";
+        $paciente->evaluacionMedica = $request->evaluacionMedica;
         $paciente->nombreAcudiente = $request->nombreAcudiente;
-        $paciente->idAcudiente = "";
+        $paciente->idAcudiente = $request->idAcudiente;
         $paciente->parentezco = $request->parentezco;
         $paciente->telefono = $request->telefono;
         $paciente->direccion = $request->direccion;
-        $paciente->ciudad = "";
+        $paciente->ciudad = $request->ciudad;
 
 
         $paciente->save();

@@ -151,11 +151,12 @@ endif; ?>
               <input name="regCode" id="regCode" type="text" class="form-control" placeholder="Codigo acceso terapeuta" style="display: none;">
               <input name="code" id="code" type="hidden" class="form-control" value="t3r4p3ut4">
             </div>
-            </form>
-             <div class="modal-footer">
+            <div class="modal-footer">
               <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
               <button id="buttonRegistrarse" class="btn btn-theme" name="buttonRegistrarse" value="Registrarse">Registrarse</button>
             </div>
+            </form>
+             
             <input type="hidden" name="validarUsuario" id="validarUsuario" value="false">
             <input type="hidden" name="validarEmail" id="validarEmail" value="false">
           </div>

@@ -430,7 +430,7 @@
     <section id="main-content">
       <section class="wrapper">
         <div>
-          <div class="row mc">
+          <div class="row mc" style="padding-top: 15px">
             <div class="col-xs-12 col-sm-6 col-md-8">
               <h3><i class="fa fa-user"></i> Pacientes Registrados</h3>
             </div>
@@ -438,7 +438,7 @@
               <br>
               <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#modalPaciente"><i class="fa fa-plus"></i> Nuevo</button>
 
-              <div class="modal fade" id="modalPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal fade" id="modalPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" align="left">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -448,44 +448,69 @@
                     <div class="modal-body">
 
                       <form class="form-horizontal tasi-form" method="GET"  action="<?php echo e(route('paciente.create')); ?>">
-                        <div class="form-group">
-                          <h4> Datos del Paciente</h4>
-                          <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
-                          <div class="col-sm-10">
+
+                        <h4> Datos del Paciente</h4>
+
+                        <div class="form-group">  
+                          <label class="col-sm-1 control-label">Nombre</label>
+                          <div class="col-sm-5">
                             <input type="text" class="form-control" name="nombrePaciente">
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Edad</label>
-                          <div class="col-sm-10">
+
+                          <label class="col-sm-1 control-label">TI</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" name="idPaciente">
+                          </div>
+                        
+                          <label class="col-sm-1 control-label">Edad</label>
+                          <div class="col-sm-2">
                             <input type="text" class="form-control" name="edad">
                           </div>
                         </div>
+
+                        <h4> Datos del Acudiente</h4>
+
                         <div class="form-group">
-                          <h4> Datos del Acudiente</h4>
-                          <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
-                          <div class="col-sm-10">
+                          <label class="col-sm-1 control-label">Nombre</label>
+                          <div class="col-sm-5">
                             <input type="text" class="form-control" name="nombreAcudiente">
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Parentezco</label>
-                          <div class="col-sm-10">
+
+                          <label class="col-sm-1 control-label">CC</label>
+                          <div class="col-sm-2">
+                            <input type="text" class="form-control" name="idAcudiente">
+                          </div>
+                        
+                          <label class="col-sm-1 control-label">Relación</label>
+                          <div class="col-sm-2">
                             <input type="text" class="form-control" name="parentezco">
                           </div>
                         </div>
+
                         <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Teléfono</label>
-                          <div class="col-sm-10">
+                          <label class="col-sm-1 control-label">Teléfono</label>
+                          <div class="col-sm-3">
                             <input type="text" class="form-control" name="telefono">
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <label class="col-sm-2 col-sm-2 control-label">Dirección</label>
-                          <div class="col-sm-10">
+                        
+                          <label class="col-sm-1 control-label">Dirección</label>
+                          <div class="col-sm-4">
+                            <input type="text" class="form-control" name="direccion">
+                          </div>
+
+                          <label class="col-sm-1 control-label">Ciudad</label>
+                          <div class="col-sm-2">
                             <input type="text" class="form-control" name="direccion">
                           </div>
                         </div>
+
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label">Valoración médica</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" name="evaluacionMedica">
+                          </div>
+                        </div>
+
                         <div class="modal-footer">
                       <button type="reset" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                       <button type="submit" class="btn btn-primary" >Registrar</button>
@@ -509,7 +534,8 @@
               <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
                 <thead>
                   <tr>
-                    <th class="hidden-phone">Nombre</th>
+                    <th></th>
+                    <th>Nombre</th>
                     <th class="hidden-phone">Edad</th>
                     <th class="hidden-phone">Nombre acudiente</th>
                     <th class="hidden-phone">Parentezco</th>
@@ -522,7 +548,48 @@
                   <?php if(!empty($pacientes)): ?>
                     <?php $__currentLoopData = $pacientes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $paciente): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                       <tr class="gradeA">
-                        <td class="hidden-phone"><?php echo e($paciente->nombrePaciente); ?></td>
+                        <td>
+                          <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalInfoPaciente<?php echo e($paciente->id); ?>"><i class="fa fa-plus"></i></button>
+                          <div class="modal fade" id="modalInfoPaciente<?php echo e($paciente->id); ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" align="left">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                  <h4 class="modal-title" id="myModalLabel">Detalles paciente: <?php echo e($paciente->nombrePaciente); ?></h4>
+                                </div>
+                                <div class="modal-body">
+                                  <div style="display: inline-table; width: 49%;">
+                                    <h5><b>Datos del Paciente</b></h5>
+                                  Nombre: <?php echo e($paciente->nombrePaciente); ?><br>
+                                  Identificación: <?php echo e($paciente->idPaciente); ?><br>
+                                  Edad: <?php echo e($paciente->edad); ?>
+
+                                  </div>
+
+                                  <div style="display: inline-table; width: 49%;">
+                                    <h5><b>Datos del Acudiente</b></h5>
+                                  Nombre: <?php echo e($paciente->nombreAcudiente); ?><br>
+                                  Cédula: <?php echo e($paciente->idAcudiente); ?><br>
+                                  Parentesco:<?php echo e($paciente->parentezco); ?><br>
+                                  Teléfono: <?php echo e($paciente->telefono); ?><br>
+                                  Dirección:<?php echo e($paciente->direccion); ?><br>
+                                  Ciudad:<?php echo e($paciente->ciudad); ?><br>
+                                  </div>
+                                  
+                                  
+                                  <h5><b>Valoración Médica</b></h5>
+                                  <?php echo e($paciente->evaluacionMedica); ?>
+
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="reset" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                  <button type="submit" class="btn btn-primary" >Actualizar</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td><?php echo e($paciente->nombrePaciente); ?></td>
                         <td class="center hidden-phone"><?php echo e($paciente->edad); ?></td>
                         <td class="hidden-phone"><?php echo e($paciente->nombreAcudiente); ?></td>
                         <td class="hidden-phone"><?php echo e($paciente->parentezco); ?></td>
@@ -541,44 +608,87 @@
                                 <div class="modal-body">
 
                                   <form class="form-horizontal tasi-form" method="GET"  action="<?php echo e(route('paciente.update', $paciente->id)); ?>">
+                                    <div>
+                                      <h4> Datos del Paciente</h4>  
+                                    </div>
+
+                                    
+
                                     <div class="form-group">
-                                      <h4> Datos del Paciente</h4>
-                                      <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
-                                      <div class="col-sm-10">
+                                      <label class="col-sm-2 control-label">Nombre</label>
+                                      <div class="col-sm-4">
                                         <input type="text" class="form-control" name="nombrePaciente" value="<?php echo e($paciente->nombrePaciente); ?>">
                                       </div>
                                     </div>
+
                                     <div class="form-group">
-                                      <label class="col-sm-2 col-sm-2 control-label">Edad</label>
-                                      <div class="col-sm-10">
+                                      <label class="col-sm-2 control-label">TI</label>
+                                      <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="idPaciente" value="<?php echo e($paciente->idPaciente); ?>">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="col-sm-2 control-label">Edad</label>
+                                      <div class="col-sm-4">
                                         <input type="text" class="form-control" name="edad" value="<?php echo e($paciente->edad); ?>">
                                       </div>
                                     </div>
+
+                                    <div>
+                                      <h4> Datos del Acudiente</h4>  
+                                    </div>
+                                    
+
                                     <div class="form-group">
-                                      <h4> Datos del Acudiente</h4>
-                                      <label class="col-sm-2 col-sm-2 control-label">Nombre</label>
-                                      <div class="col-sm-10">
+                                      <label class="col-sm-2 control-label">Nombre</label>
+                                      <div class="col-sm-4">
                                         <input type="text" class="form-control" name="nombreAcudiente" value="<?php echo e($paciente->nombreAcudiente); ?>">
                                       </div>
                                     </div>
+
                                     <div class="form-group">
-                                      <label class="col-sm-2 col-sm-2 control-label">Parentezco</label>
-                                      <div class="col-sm-10">
+                                      <label class="col-sm-2 control-label">CC</label>
+                                      <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="idAcudiente" value="<?php echo e($paciente->idAcudiente); ?>">
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="col-sm-2 control-label">Relación</label>
+                                      <div class="col-sm-4">
                                         <input type="text" class="form-control" name="parentezco" value="<?php echo e($paciente->parentezco); ?>">
                                       </div>
                                     </div>
+
                                     <div class="form-group">
-                                      <label class="col-sm-2 col-sm-2 control-label">Teléfono</label>
-                                      <div class="col-sm-10">
+                                      <label class="col-sm-2 control-label">Teléfono</label>
+                                      <div class="col-sm-4">
                                         <input type="text" class="form-control" name="telefono" value="<?php echo e($paciente->telefono); ?>">
                                       </div>
                                     </div>
+
                                     <div class="form-group">
-                                      <label class="col-sm-2 col-sm-2 control-label">Dirección</label>
-                                      <div class="col-sm-10">
+                                      <label class="col-sm-2 control-label">Dirección</label>
+                                      <div class="col-sm-4">
                                         <input type="text" class="form-control" name="direccion" value="<?php echo e($paciente->direccion); ?>">
                                       </div>
                                     </div>
+
+                                    <div class="form-group">
+                                      <label class="col-sm-2 control-label">Ciudad</label>
+                                      <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="ciudad" value="<?php echo e($paciente->ciudad); ?>">
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                      <label class="col-sm-5 control-label">Valoracón médica</label>
+                                      <div class="col-sm-3">
+                                        <input type="text" class="form-control" name="evaluacionMedica" value="<?php echo e($paciente->evaluacionMedica); ?>">
+                                      </div>
+                                    </div>
+
                                     <div class="modal-footer">
                                       <button type="reset" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                       <button type="submit" class="btn btn-primary" >Actualizar</button>
@@ -614,7 +724,7 @@
                             </div>
                           </div>
 
-                          <a class="btn btn-primary btn-xs" href="<?php echo e(route('paciente.select', $paciente->id)); ?>"><i class="fa fa-check " title="Seleccionar Paciente"></i></a>
+                          <a class="btn btn-info btn-xs" href="<?php echo e(route('paciente.select', $paciente->id)); ?>"><i class="fa fa-check " title="Seleccionar Paciente"></i></a>
 
 
                         </td>
