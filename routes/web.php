@@ -40,3 +40,25 @@ Route::get('paciente/{id}/select', [
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/***********************************************************************/
+
+Route::get('paciente/{id}/{level}/postura', [
+	'uses' => 'PacienteController@postura',
+	'as' => 'paciente.postura'
+]);
+
+Route::get('paciente/cara/{id}/{level}', [
+	'uses' => 'PacienteController@cara',
+	'as' => 'paciente.cara'
+]);
+
+Route::get('paciente/sonido/{id}/{level}', [
+	'uses' => 'PacienteController@sonido',
+	'as' => 'paciente.sonido'
+]);
+
+Route::get('paciente/palabra/{id}/{level}', [
+	'uses' => 'PacienteController@palabra',
+	'as' => 'paciente.palabra'
+]);

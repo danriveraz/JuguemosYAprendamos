@@ -20,13 +20,16 @@ class PacienteController extends Controller
         $userPA = \Auth::user()->pacienteActual;
         $paciente = Paciente::Search($userPA)->get()->first();
         $nombrePaciente = "";
+        $idPaciente = 0;
         if($paciente != null){
             $nombrePaciente = $paciente->nombrePaciente;
+            $idPaciente = $paciente->id;
         }
         
         return view('paciente.index')
         ->with('pacientes', $pacientes)
-        ->with('nombrePaciente' , $nombrePaciente);
+        ->with('nombrePaciente' , $nombrePaciente)
+        ->with('idPaciente' , $idPaciente);
     }
 
     /**
@@ -50,6 +53,7 @@ class PacienteController extends Controller
 
 
         $paciente->save();
+        flash('Paciente creado correctamente')->success()->important();
         return redirect('paciente');
     }
 
@@ -110,6 +114,7 @@ class PacienteController extends Controller
 
         $paciente->save();
 
+        flash('Paciente actualizado correctamente')->success()->important();
         return redirect('paciente');
     }
 
@@ -120,6 +125,34 @@ class PacienteController extends Controller
         $userActual->save();
 
         return redirect('paciente');
+    }
+
+    public function postura($id, $level)
+    {
+        return view('paciente.postura')
+        ->with('id',$id)
+        ->with('level',$level);
+    }
+
+    public function cara($id, $level)
+    {
+        return view('paciente.cara')
+        ->with('id',$id)
+        ->with('level',$level);
+    }
+
+    public function sonido($id, $level)
+    {
+        return view('paciente.sonido')
+        ->with('id',$id)
+        ->with('level',$level);
+    }
+
+    public function palabra($id, $level)
+    {
+        return view('paciente.palabra')
+        ->with('id',$id)
+        ->with('level',$level);
     }
 
     /**
@@ -133,6 +166,7 @@ class PacienteController extends Controller
         $paciente = Paciente::find($id);
         $paciente->delete();
 
+        flash('Paciente eliminado correctamente')->success()->important();
         return redirect('paciente');
     }
 }

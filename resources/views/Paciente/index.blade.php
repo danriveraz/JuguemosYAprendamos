@@ -343,16 +343,17 @@
               </li>
             </ul>
           </li>
+          @if($idPaciente != 0)
           <li class="sub-menu">
             <a href="javascript:;">
               <i class=" fa fa-rocket"></i>
               <span>Nivel 1 (Letra P)</span>
               </a>
             <ul class="sub">
-              <li><a href="morris.html">Postura</a></li>
-              <li><a href="chartjs.html">Cara</a></li>
-              <li><a href="flot_chart.html">Sonido</a></li>
-              <li><a href="xchart.html">Palabras</a></li>
+              <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 1])}}" >Postura</a></li>
+              <li><a href="{{route('paciente.cara', ['id' => $idPaciente, 'level' => 1])}}">Cara</a></li>
+              <li><a href="{{route('paciente.sonido', ['id' => $idPaciente, 'level' => 1])}}">Sonido</a></li>
+              <li><a href="{{route('paciente.palabra', ['id' => $idPaciente, 'level' => 1])}}">Palabras</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -361,10 +362,10 @@
               <span>Nivel (Letra B)</span>
               </a>
             <ul class="sub">
-              <li><a href="morris.html">Postura</a></li>
-              <li><a href="chartjs.html">Cara</a></li>
-              <li><a href="flot_chart.html">Sonido</a></li>
-              <li><a href="xchart.html">Palabras</a></li>
+              <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 2])}}" >Postura</a></li>
+              <li><a href="{{route('paciente.cara', ['id' => $idPaciente, 'level' => 2])}}">Cara</a></li>
+              <li><a href="{{route('paciente.sonido', ['id' => $idPaciente, 'level' => 2])}}">Sonido</a></li>
+              <li><a href="{{route('paciente.palabra', ['id' => $idPaciente, 'level' => 2])}}">Palabras</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -373,12 +374,13 @@
               <span>Nivel (Letra M)</span>
               </a>
             <ul class="sub">
-              <li><a href="morris.html">Postura</a></li>
-              <li><a href="chartjs.html">Cara</a></li>
-              <li><a href="flot_chart.html">Sonido</a></li>
-              <li><a href="xchart.html">Palabras</a></li>
+              <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 3])}}" >Postura</a></li>
+              <li><a href="{{route('paciente.cara', ['id' => $idPaciente, 'level' => 3])}}">Cara</a></li>
+              <li><a href="{{route('paciente.sonido', ['id' => $idPaciente, 'level' => 3])}}">Sonido</a></li>
+              <li><a href="{{route('paciente.palabra', ['id' => $idPaciente, 'level' => 3])}}">Palabras</a></li>
             </ul>
           </li>
+          @endif
 <!--      
           <li>
             <a href="inbox.html">
@@ -430,12 +432,13 @@
       <section class="wrapper">
         <div>
           <div class="row mc" style="padding-top: 15px">
+          @include('flash::message')
             <div class="col-xs-12 col-sm-6 col-md-8">
               <h3><i class="fa fa-user"></i> Pacientes Registrados</h3>
             </div>
             <div class="col-xs-6 col-md-4" align="center">
               <br>
-              <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#modalPaciente"><i class="fa fa-plus"></i> Nuevo</button>
+              <button type="button" class="btn btn-theme" data-toggle="modal" data-target="#modalPaciente"  title="Crear Paciente"><i class="fa fa-plus"></i> Nuevo</button>
 
               <div class="modal fade" id="modalPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" align="left">
                 <div class="modal-dialog">
@@ -452,12 +455,12 @@
 
                         <div class="form-group">  
                           <label class="col-sm-1 control-label">Nombre</label>
-                          <div class="col-sm-5">
+                          <div class="col-sm-4">
                             <input type="text" class="form-control" name="nombrePaciente">
                           </div>
 
                           <label class="col-sm-1 control-label">TI</label>
-                          <div class="col-sm-2">
+                          <div class="col-sm-3">
                             <input type="text" class="form-control" name="idPaciente">
                           </div>
                         
@@ -471,12 +474,12 @@
 
                         <div class="form-group">
                           <label class="col-sm-1 control-label">Nombre</label>
-                          <div class="col-sm-5">
+                          <div class="col-sm-4">
                             <input type="text" class="form-control" name="nombreAcudiente">
                           </div>
 
                           <label class="col-sm-1 control-label">CC</label>
-                          <div class="col-sm-2">
+                          <div class="col-sm-3">
                             <input type="text" class="form-control" name="idAcudiente">
                           </div>
                         
@@ -499,7 +502,7 @@
 
                           <label class="col-sm-1 control-label">Ciudad</label>
                           <div class="col-sm-2">
-                            <input type="text" class="form-control" name="direccion">
+                            <input type="text" class="form-control" name="ciudad">
                           </div>
                         </div>
 
@@ -548,7 +551,7 @@
                     @foreach($pacientes as $paciente)
                       <tr class="gradeA">
                         <td>
-                          <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalInfoPaciente{{$paciente->id}}"><i class="fa fa-plus"></i></button>
+                          <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalInfoPaciente{{$paciente->id}}"><i class="fa fa-plus" title="Ver detalles"></i></button>
                           <div class="modal fade" id="modalInfoPaciente{{$paciente->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" align="left">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -578,10 +581,7 @@
                                   <h5><b>Valoración Médica</b></h5>
                                   {{$paciente->evaluacionMedica}}
                                 </div>
-                                <div class="modal-footer">
-                                  <button type="reset" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                  <button type="submit" class="btn btn-primary" >Actualizar</button>
-                                </div>
+                                
                               </div>
                             </div>
                           </div>
@@ -593,7 +593,7 @@
                         <td class="center hidden-phone">{{$paciente->telefono}}</td>
                         <td class="center hidden-phone">{{$paciente->direccion}}</td>
                         <td>
-                          <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editModal{{$paciente->id}}"><i class="fa fa-pencil"></i></button>
+                          <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editModal{{$paciente->id}}"><i class="fa fa-pencil" title="Editar Paciente"></i></button>
 
                           <div class="modal fade" id="editModal{{$paciente->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -698,7 +698,7 @@
                             </div>
                           </div>
 
-                          <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$paciente->id}}"><i class="fa fa-trash-o "></i></button>
+                          <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#deleteModal{{$paciente->id}}"><i class="fa fa-trash-o" title="Eliminar Paciente"></i></button>
 
                           <div class="modal fade" id="deleteModal{{$paciente->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
