@@ -21,6 +21,7 @@ Route::get('username','Auth\RegisterController@verificarUser');
 Route::get('email','Auth\RegisterController@verificarEmail');
 
 Route::resource('paciente', 'PacienteController');
+
 Route::get('paciente/{id}/destroy', [
 	'uses' => 'PacienteController@destroy',
 	'as' => 'paciente.destroy'
@@ -35,7 +36,6 @@ Route::get('paciente/{id}/select', [
 	'uses' => 'PacienteController@select',
 	'as' => 'paciente.select'
 ]);
-
 
 Auth::routes();
 
@@ -61,4 +61,14 @@ Route::get('paciente/sonido/{id}/{level}', [
 Route::get('paciente/palabra/{id}/{level}', [
 	'uses' => 'PacienteController@palabra',
 	'as' => 'paciente.palabra'
+]);
+
+Route::get('paciente/createstics/{id}/{level}', [
+	'uses' => 'PacienteController@createstics',
+	'as' => 'paciente.createstics'
+]);
+
+Route::get('/estadisticas', [
+	'uses' => 'EstadisticasController@index',
+	'as' => 'estadisticas.index'
 ]);

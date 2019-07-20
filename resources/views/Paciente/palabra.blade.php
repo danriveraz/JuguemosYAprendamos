@@ -373,11 +373,17 @@
               <span>Nivel (Letra B)</span>
               </a>
             <ul class="sub">
-              <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 3])}}" >Postura</a></li>
+              <li><a href=" href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 3])}}" >Postura</a></li>
               <li><a href="{{route('paciente.cara', ['id' => $idPaciente, 'level' => 3])}}">Cara</a></li>
               <li><a href="{{route('paciente.sonido', ['id' => $idPaciente, 'level' => 3])}}">Sonido</a></li>
               <li><a href="{{route('paciente.palabra', ['id' => $idPaciente, 'level' => 3])}}">Palabras</a></li>
             </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="{{route('estadisticas.index')}}">
+              <i class=" fa fa-pie-chart"></i>
+              <span>Estadisticas</span>
+            </a>
           </li>
 <!--      
           <li>
@@ -428,7 +434,7 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <div >
+        <form  id="formPalabras"  method="GET"  action="{{route('paciente.createstics', ['id' => $idPaciente, 'level' => 1])}}">
           <!-- class="row mc" style="background-image: url('../../../img/Palabras/letraP.png'); width: 100%; height: 100vh; " -->
           <div id="primerasImagenes" class="text-center" style="display: block;">
             <a>
@@ -456,9 +462,14 @@
             <button id="btnAcierto" type="button" class="btn btn-theme" title="Siguiente"> ¡Muy bien! </button>
             <button id="btnFallo" type="button" class="btn btn-theme" title="Siguiente"> Intenta de nuevo </button>
             <button id="btnSiguiente" type="button" class="btn btn-theme" title="Siguiente"> Siguiente </button>
-            <input id="indicadorCambio" type="text" value="0" style="display: none;">
+            <button id="btnFinalizar" type="submit" class="btn btn-theme" title="Siguiente"> Finalizar </button>
+
+            <input id="indicadorCambio" type="text" value="0" hidden="true">
+            <input id="nAciertos" name="nAciertos" type="number" value="0" hidden="true">
+            <input id="nFallos" name="nFallos" type="number" value="0" hidden="true">
+
           </div>
-        </div>
+        </form>
       </section>
       <!-- /wrapper -->
     </section>
@@ -578,9 +589,21 @@
       $("#primerasImagenes").css("display", "block");
       $("#segundasImagenes").css("display", "none");
       $("#primerasImagenes").val(0);
-    }
-    
+    }  
   });
+
+  $( "#btnAcierto" ).click(function() {
+    //var n = parseInt($("#btnAcierto").val());
+    //alert(n);
+    $("#nAciertos").get(0).value++;
+  });
+
+  $( "#btnFallo" ).click(function() {
+    //var n = parseInt($("#btnAcierto").val());
+    //alert(n);
+    $("#nFallos").get(0).value++;
+  });
+
 </script>
 
 </body>

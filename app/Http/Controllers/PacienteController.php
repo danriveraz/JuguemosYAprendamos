@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Paciente;
+use App\Estadisticas;
 use App\User;
 
 class PacienteController extends Controller
@@ -169,11 +170,48 @@ class PacienteController extends Controller
         ->with('level',$level)
         ->with('nombrePaciente' , $nombrePaciente)
         ->with('idPaciente' , $idPaciente);
+    }
 
-        /*return view('paciente.index')
-        ->with('pacientes', $pacientes)
-        ->with('nombrePaciente' , $nombrePaciente)
-        ->with('idPaciente' , $idPaciente);*/
+    public function createstics(Request $request, $id, $level){
+        $userActual = \Auth::user();
+        $idUser = $userActual->id;
+        $aciertos   = $request->nAciertos;
+        $fallos     = $request->nFallos;
+        $nNivel     = $level;
+        $idPaciente = $id;
+
+        $existe = Estadisticas::Search($idPaciente, $idUser, $nNivel)->get()->first();
+
+        if($existe == null){
+            $estadisticas = new Estadisticas();
+            $estadisticas->primerIntentoBuenos = $aciertos;
+            $estadisticas->primerIntentoFallos = $fallos;
+            $estadisticas->penultimoIntentoBuenos = $aciertos;
+            $estadisticas->penultimoIntentoFallos = $fallos;
+            $estadisticas->ultimoIntentoBuenos = 0;
+            $estadisticas->ultimoIntentoFallos = 0;
+            $estadisticas->nNivel = $nNivel;
+            $estadisticas->idUser = $idUser;
+            $estadisticas->idPaciente = $idPaciente;
+            dd("primer if");
+            //$estadisticas->save();
+        }else{
+            if($existe->ultimoIntentoBuenos == 0){
+                $existe->ultimoIntentoBuenos = $aciertos;
+                $existe->ultimoIntentoFallos = $fallos;
+                //dd("segundo if");
+                $existe->save();
+            }else{
+                $existe->penultimoIntentoBuenos = $existe->ultimoIntentoBuenos;
+                $existe->penultimoIntentoFallos = $existe->ultimoIntentoFallos;
+                $existe->ultimoIntentoBuenos = $aciertos;
+                $existe->ultimoIntentoFallos = $fallos;
+                $existe->save();
+            }
+        }
+
+        flash('Nivel 1 finalizado correctamente')->success()->important();
+        return redirect('paciente');
     }
 
     /**
