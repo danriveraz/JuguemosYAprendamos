@@ -68,7 +68,7 @@ Route::get('paciente/createstics/{id}/{level}', [
 	'as' => 'paciente.createstics'
 ]);
 
-Route::get('/estadisticas', [
-	'uses' => 'EstadisticasController@index',
-	'as' => 'estadisticas.index'
+Route::get('paciente/estadisticas/{id}/{level}', [
+	'uses' => 'PacienteController@estadisticas',
+	'as' => 'paciente.estadisticas'
 ]);

@@ -12,6 +12,9 @@ class EstadisticasController extends Controller
 {
     public function index()
     {
+    	$userActual = \Auth::user();
+        $idUser = $userActual->id;
+
         $pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
         $userPA = \Auth::user()->pacienteActual;
         $paciente = Paciente::Search($userPA)->get()->first();
@@ -22,9 +25,22 @@ class EstadisticasController extends Controller
             $idPaciente = $paciente->id;
         }
         
-        return view('Estadisticas.index')
-        ->with('pacientes', $pacientes)
-        ->with('nombrePaciente' , $nombrePaciente)
-        ->with('idPaciente' , $idPaciente);
+        $existe = Estadisticas::Search($idPaciente, $idUser, $nNivel)->get()->first();
+
+        $primerIntentoBuenos = 0;
+        $primerIntentoFallos = 0;
+        $penultimoIntentoBuenos = 0;
+        $penultimoIntentoFallos = 0;
+        $ultimoIntentoBuenos = 0;
+        $ultimoIntentoFallos = 0;
+
+        if($existe != null){
+        	$primerIntentoBuenos = $existe->primerIntentoBuenos;
+        	$primerIntentoFallos = $existe->primerIntentoFallos;
+	        $penultimoIntentoBuenos = $existe->penultimoIntentoBuenos;
+	        $penultimoIntentoFallos = $existe->penultimoIntentoFallos;
+	        $ultimoIntentoBuenos = $existe->ultimoIntentoBuenos;
+	        $ultimoIntentoFallos = $existe->ultimoIntentoFallos;
+        }
     }
 }

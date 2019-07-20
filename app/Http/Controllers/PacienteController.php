@@ -214,6 +214,55 @@ class PacienteController extends Controller
         return redirect('paciente');
     }
 
+    public function estadisticas(Request $request, $id, $level){
+
+        $userPA = \Auth::user()->pacienteActual;
+        $paciente = Paciente::Search($userPA)->get()->first();
+        $nombrePaciente = "";
+        $idPaciente = 0;
+        if($paciente != null){
+            $nombrePaciente = $paciente->nombrePaciente;
+            $idPaciente = $paciente->id;
+        }
+        
+        $userActual = \Auth::user();
+        $idUser = $userActual->id;
+        $aciertos   = $request->nAciertos;
+        $fallos     = $request->nFallos;
+        $nNivel     = $level;
+        $idPaciente = $id;
+
+        $existe = Estadisticas::Search($idPaciente, $idUser, $nNivel)->get()->first();
+
+        $primerIntentoBuenos = 0;
+        $primerIntentoFallos = 0;
+        $penultimoIntentoBuenos = 0;
+        $penultimoIntentoFallos = 0;
+        $ultimoIntentoBuenos = 0;
+        $ultimoIntentoFallos = 0;
+
+        if($existe != null){
+            $primerIntentoBuenos = $existe->primerIntentoBuenos;
+            $primerIntentoFallos = $existe->primerIntentoFallos;
+            $penultimoIntentoBuenos = $existe->penultimoIntentoBuenos;
+            $penultimoIntentoFallos = $existe->penultimoIntentoFallos;
+            $ultimoIntentoBuenos = $existe->ultimoIntentoBuenos;
+            $ultimoIntentoFallos = $existe->ultimoIntentoFallos;
+        }
+
+        return view('paciente.estadisticas')
+        ->with('id',$id)
+        ->with('level',$level)
+        ->with('nombrePaciente' , $nombrePaciente)
+        ->with('idPaciente' , $idPaciente)
+        ->with('primerIntentoBuenos' , $primerIntentoBuenos)
+        ->with('primerIntentoFallos' , $primerIntentoFallos)
+        ->with('penultimoIntentoBuenos' , $penultimoIntentoBuenos)
+        ->with('penultimoIntentoFallos' , $penultimoIntentoFallos)
+        ->with('ultimoIntentoBuenos' , $ultimoIntentoBuenos)
+        ->with('ultimoIntentoFallos' , $ultimoIntentoFallos);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

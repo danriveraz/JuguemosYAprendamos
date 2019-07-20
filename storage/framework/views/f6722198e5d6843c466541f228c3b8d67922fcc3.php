@@ -59,7 +59,11 @@
               </ul>
             </li>
             <li class="sub-menu">
-              <a class="active">
+              <?php if($level == 1): ?>
+                <a class="active">
+              <?php else: ?>
+                <a href="javascript:;">
+              <?php endif; ?>
                 <i class="fa fa-rocket"></i>
                 <span>Nivel 1 (Letra P)</span>
                 </a>
@@ -67,12 +71,20 @@
                 <li><a href="<?php echo e(route('paciente.postura', ['id' => $idPaciente, 'level' => 1])); ?>" >Postura</a></li>
                 <li><a href="<?php echo e(route('paciente.cara', ['id' => $idPaciente, 'level' => 1])); ?>">Cara</a></li>
                 <li><a href="<?php echo e(route('paciente.sonido', ['id' => $idPaciente, 'level' => 1])); ?>">Sonido</a></li>
-                <li class="active"><a href="<?php echo e(route('paciente.palabra', ['id' => $idPaciente, 'level' => 1])); ?>">Palabras</a></li>
-                <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 1])); ?>">Estadisticas</a></li>
+                <li><a href="<?php echo e(route('paciente.palabra', ['id' => $idPaciente, 'level' => 1])); ?>">Palabras</a></li>
+                <?php if($level == 1): ?>
+                  <li class="active"><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 1])); ?>">Estadisticas</a></li>
+                <?php else: ?>
+                  <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 1])); ?>">Estadisticas</a></li>
+                <?php endif; ?>
               </ul>
             </li>
             <li class="sub-menu">
-              <a href="javascript:;">
+              <?php if($level == 2): ?>
+                <a class="active">
+              <?php else: ?>
+                <a href="javascript:;">
+              <?php endif; ?>
                 <i class=" fa fa-rocket"></i>
                 <span>Nivel (Letra M)</span>
                 </a>
@@ -81,11 +93,19 @@
                 <li><a href="<?php echo e(route('paciente.cara', ['id' => $idPaciente, 'level' => 2])); ?>">Cara</a></li>
                 <li><a href="<?php echo e(route('paciente.sonido', ['id' => $idPaciente, 'level' => 2])); ?>">Sonido</a></li>
                 <li><a href="<?php echo e(route('paciente.palabra', ['id' => $idPaciente, 'level' => 2])); ?>">Palabras</a></li>
-                <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 2])); ?>">Estadisticas</a></li>
+                <?php if($level == 2): ?>
+                  <li class="active"><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 2])); ?>">Estadisticas</a></li>
+                <?php else: ?>
+                  <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 2])); ?>">Estadisticas</a></li>
+                <?php endif; ?>
               </ul>
             </li>
             <li class="sub-menu">
-              <a href="javascript:;">
+              <?php if($level == 3): ?>
+                <a class="active">
+              <?php else: ?>
+                <a href="javascript:;">
+              <?php endif; ?>
                 <i class=" fa fa-rocket"></i>
                 <span>Nivel (Letra B)</span>
                 </a>
@@ -94,7 +114,11 @@
                 <li><a href="<?php echo e(route('paciente.cara', ['id' => $idPaciente, 'level' => 3])); ?>">Cara</a></li>
                 <li><a href="<?php echo e(route('paciente.sonido', ['id' => $idPaciente, 'level' => 3])); ?>">Sonido</a></li>
                 <li><a href="<?php echo e(route('paciente.palabra', ['id' => $idPaciente, 'level' => 3])); ?>">Palabras</a></li>
-                <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 3])); ?>">Estadisticas</a></li>
+                <?php if($level == 3): ?>
+                  <li class="active"><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 3])); ?>">Estadisticas</a></li>
+                <?php else: ?>
+                  <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 3])); ?>">Estadisticas</a></li>
+                <?php endif; ?>
               </ul>
             </li>
           </ul>
@@ -102,43 +126,31 @@
       </aside>
       <section id="main-content">
         <section class="wrapper">
-          <form  id="formPalabras"  method="GET"  action="<?php echo e(route('paciente.createstics', ['id' => $idPaciente, 'level' => 1])); ?>">
-            <div id="primerasImagenes" class="text-center" style="display: block;">
-              <a>
-                <img src="../../../img/Palabras/papa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/pato.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/pelota.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-            </div>
-            <div id="segundasImagenes" class="text-center" style="display: none;">
-              <a>
-                <img src="../../../img/Palabras/mapa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/copa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/campo.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-            </div>
-            <div class="text-center">
-              <button id="btnAcierto" type="button" class="btn btn-theme" title="Siguiente"> ¡Muy bien! </button>
-              <button id="btnFallo" type="button" class="btn btn-theme" title="Siguiente"> Intenta de nuevo </button>
-              <button id="btnSiguiente" type="button" class="btn btn-theme" title="Siguiente"> Siguiente </button>
-              <button id="btnFinalizar" type="submit" class="btn btn-theme" title="Siguiente"> Finalizar </button>
-              <input id="indicadorCambio" type="text" value="0" hidden="true">
-              <input id="nAciertos" name="nAciertos" type="number" value="0" hidden="true">
-              <input id="nFallos" name="nFallos" type="number" value="0" hidden="true">
-            </div>
-          </form>
+
+          <?php if($primerIntentoBuenos != 0 || $primerIntentoFallos != 0): ?>
+            <div id="primerIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+          <?php else: ?>
+            <div id="primerIntento" style=" display: inline-block; width: 550px; height: 500px; display: none"></div>
+          <?php endif; ?>
+
+          <?php if($primerIntentoBuenos != 0 || $primerIntentoFallos != 0): ?>
+            <div id="penultimoIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+          <?php else: ?>
+            <div id="penultimoIntento" style=" display: inline-block; width: 550px; height: 500px; display: none"></div>
+          <?php endif; ?>
+
+          <?php if($primerIntentoBuenos != 0 || $primerIntentoFallos != 0): ?>
+            <div id="ultimoIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+          <?php else: ?>
+            <div id="ultimoIntento" style=" display: inline-block; width: 550px; height: 500px; display: none;"></div>
+          <?php endif; ?>
+
+          <div id="vacio" class="text-center" style="display: none;">
+            <h1>No hay nada que ver aquí, por ahora.</h1>
+          </div>
         </section>
       </section>
-
-      <footer class="site-footer">
+    <footer class="site-footer">
         <div class="text-center">
           <p>
             &copy; Copyrights <strong>Dashio</strong>. All Rights Reserved
@@ -167,29 +179,93 @@
     <script type="text/javascript" src="../../../lib/advanced-datatable/js/DT_bootstrap.js"></script>
     <!--common script for all pages-->
     <script src="../../../lib/common-scripts.js"></script>
-    <!--script for this page-->
-    
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <!--script for this page-->
+
     <script type="text/javascript">
-      $( "#btnSiguiente" ).click(function() {
-        if($("#primerasImagenes").val() == 0){
-          $("#primerasImagenes").css("display", "none");
-          $("#segundasImagenes").css("display", "block");
-          $("#primerasImagenes").val(1);
-        }else{
-          $("#primerasImagenes").css("display", "block");
-          $("#segundasImagenes").css("display", "none");
-          $("#primerasImagenes").val(0);
-        }  
-      });
 
-      $( "#btnAcierto" ).click(function() {
-        $("#nAciertos").get(0).value++;
-      });
+      var primerIntentoBuenos = <?php echo json_encode($primerIntentoBuenos); ?>;
+      var primerIntentoFallos = <?php echo json_encode($primerIntentoFallos); ?>;
+      var penultimoIntentoBuenos = <?php echo json_encode($penultimoIntentoBuenos); ?>;
+      var penultimoIntentoFallos = <?php echo json_encode($penultimoIntentoFallos); ?>;
+      var ultimoIntentoBuenos = <?php echo json_encode($ultimoIntentoBuenos); ?>;
+      var ultimoIntentoFallos = <?php echo json_encode($ultimoIntentoFallos); ?>;
 
-      $( "#btnFallo" ).click(function() {
-        $("#nFallos").get(0).value++;
-      });
+      if(primerIntentoBuenos == 0 &&  primerIntentoFallos == 0 &&  
+         penultimoIntentoBuenos == 0 &&  penultimoIntentoFallos == 0 &&  
+         ultimoIntentoBuenos == 0 &&  ultimoIntentoFallos == 0){
+        $("#vacio").css("display", "block");
+      }
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Denominación', '# Intentos'],
+          ['Aciertos',     primerIntentoBuenos],
+          ['Fallos',      primerIntentoFallos]
+        ]);
+
+        var options = {
+          title: 'Primer intento',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('primerIntento'));
+
+        if(primerIntentoBuenos != 0 || primerIntentoFallos != 0){
+          chart.draw(data, options);
+        }
+      }
+
+      function drawChart2() {
+
+        var data2 = google.visualization.arrayToDataTable([
+          ['Denominación', '# Intentos'],
+          ['Aciertos',     penultimoIntentoBuenos],
+          ['Fallos',      penultimoIntentoFallos]
+        ]);
+
+        var options2 = {
+          title: 'Intento anterior',
+          is3D: true,
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('penultimoIntento'));
+
+        if(penultimoIntentoBuenos != 0 || penultimoIntentoFallos != 0){
+          chart2.draw(data2, options2);
+        }
+      }
+      
+      function drawChart3() {
+
+        var data3 = google.visualization.arrayToDataTable([
+          ['Denominación', '# Intentos'],
+          ['Aciertos',     ultimoIntentoBuenos],
+          ['Fallos',      ultimoIntentoFallos]
+        ]);
+
+        var options3 = {
+          title: 'Intento mas reciente',
+          is3D: true,
+        };
+
+        var chart3 = new google.visualization.PieChart(document.getElementById('ultimoIntento'));
+
+        if(ultimoIntentoBuenos != 0 || ultimoIntentoFallos != 0){
+          chart3.draw(data3, options3);
+        }
+      }
+
     </script>
   </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/paciente/palabra.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/paciente/estadisticas.blade.php ENDPATH**/ ?>

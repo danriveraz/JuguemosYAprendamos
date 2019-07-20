@@ -120,7 +120,9 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        
+        <div id="primerIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+        <div id="penultimoIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+        <div id="ultimoIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
       </section>
       <!-- /wrapper -->
     </section>
@@ -167,8 +169,73 @@
   <script type="text/javascript" src="lib/advanced-datatable/js/DT_bootstrap.js"></script>
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
   <!--script for this page-->
-</script>
+
+  <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawChart2);
+      google.charts.setOnLoadCallback(drawChart3);
+
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Denominación', '# Intentos'],
+          ['Aciertos',     11],
+          ['Fallos',      2]
+        ]);
+
+        var options = {
+          title: 'Primer intento',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('primerIntento'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChart2() {
+
+        var data2 = google.visualization.arrayToDataTable([
+          ['Denominación', '# Intentos'],
+          ['Aciertos',     11],
+          ['Fallos',      2]
+        ]);
+
+        var options2 = {
+          title: 'Intento anterior',
+          is3D: true,
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('penultimoIntento'));
+
+        chart2.draw(data2, options2);
+      }
+      
+      function drawChart3() {
+
+        var data3 = google.visualization.arrayToDataTable([
+          ['Denominación', '# Intentos'],
+          ['Aciertos',     11],
+          ['Fallos',      2]
+        ]);
+
+        var options3 = {
+          title: 'Intento mas reciente',
+          is3D: true,
+        };
+
+        var chart3 = new google.visualization.PieChart(document.getElementById('ultimoIntento'));
+
+        chart3.draw(data3, options3);
+      }
+
+    </script>
 
 </body>
 
