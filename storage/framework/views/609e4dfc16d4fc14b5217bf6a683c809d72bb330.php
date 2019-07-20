@@ -1,1 +1,0 @@
-<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/paciente/cara.blade.php ENDPATH**/ ?>

@@ -359,7 +359,7 @@
           <li class="sub-menu">
             <a href="javascript:;">
               <i class=" fa fa-rocket"></i>
-              <span>Nivel (Letra B)</span>
+              <span>Nivel (Letra M)</span>
               </a>
             <ul class="sub">
               <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 2])}}" >Postura</a></li>
@@ -371,7 +371,7 @@
           <li class="sub-menu">
             <a href="javascript:;">
               <i class=" fa fa-rocket"></i>
-              <span>Nivel (Letra M)</span>
+              <span>Nivel (Letra B)</span>
               </a>
             <ul class="sub">
               <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 3])}}" >Postura</a></li>
