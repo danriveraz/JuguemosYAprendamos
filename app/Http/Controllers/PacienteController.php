@@ -130,9 +130,24 @@ class PacienteController extends Controller
 
     public function postura($id, $level)
     {
+        $userPA = \Auth::user()->pacienteActual;
+        $paciente = Paciente::Search($userPA)->get()->first();
+        $nombrePaciente = "";
+        $idPaciente = 0;
+        if($paciente != null){
+            $nombrePaciente = $paciente->nombrePaciente;
+            $idPaciente = $paciente->id;
+        }
+
+        $userActual = \Auth::user();
+        $userActual->pacienteActual = $id;
+        $userActual->save();
+
         return view('paciente.postura')
         ->with('id',$id)
-        ->with('level',$level);
+        ->with('level',$level)
+        ->with('nombrePaciente' , $nombrePaciente)
+        ->with('idPaciente' , $idPaciente);
     }
 
     public function cara($id, $level)

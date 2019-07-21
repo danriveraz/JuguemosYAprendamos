@@ -21,6 +21,7 @@
   <!-- Custom styles for this template -->
   <link href="../../../css/style.css" rel="stylesheet">
   <link href="../../../css/style-responsive.css" rel="stylesheet">
+  <link href="../../../css/carousel.css" rel="stylesheet">
 </head>
   <body>
     <section id="container">
@@ -114,39 +115,37 @@
       </aside>
       <section id="main-content">
         <section class="wrapper">
-          <form  id="formPalabras"  method="GET"  action="<?php echo e(route('paciente.createstics', ['id' => $idPaciente, 'level' => 1])); ?>">
-            <div id="primerasImagenes" class="text-center" style="display: block;">
-              <a>
-                <img src="../../../img/Palabras/papa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/pato.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/pelota.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-            </div>
-            <div id="segundasImagenes" class="text-center" style="display: none;">
-              <a>
-                <img src="../../../img/Palabras/mapa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/copa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/campo.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-            </div>
-            <div class="text-center">
-              <button id="btnAcierto" type="button" class="btn btn-theme" title="Siguiente"> ¡Muy bien! </button>
-              <button id="btnFallo" type="button" class="btn btn-theme" title="Siguiente"> Intenta de nuevo </button>
-              <button id="btnSiguiente" type="button" class="btn btn-theme" title="Siguiente"> Siguiente </button>
-              <button id="btnFinalizar" type="submit" class="btn btn-theme" title="Siguiente"> Finalizar </button>
-              <input id="indicadorCambio" type="text" value="0" hidden="true">
-              <input id="nAciertos" name="nAciertos" type="number" value="0" hidden="true">
-              <input id="nFallos" name="nFallos" type="number" value="0" hidden="true">
-            </div>
-          </form>
+          
+  <h2>Acomodemos nuestra postura</h2>  
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="../../../img/postura/postura1.png" alt="Postura incorrecta 1">
+      </div>
+
+      <div class="item">
+        <img src="../../../img/postura/postura2.png" alt="Postura incorrecta 2">
+      </div>
+    
+      <div class="item">
+        <img src="../../../img/postura/postura3.png" alt="Postura correcta">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
         </section>
       </section>
 
@@ -181,27 +180,6 @@
     <script src="../../../lib/common-scripts.js"></script>
     <!--script for this page-->
     
-    <script type="text/javascript">
-      $( "#btnSiguiente" ).click(function() {
-        if($("#primerasImagenes").val() == 0){
-          $("#primerasImagenes").css("display", "none");
-          $("#segundasImagenes").css("display", "block");
-          $("#primerasImagenes").val(1);
-        }else{
-          $("#primerasImagenes").css("display", "block");
-          $("#segundasImagenes").css("display", "none");
-          $("#primerasImagenes").val(0);
-        }  
-      });
-
-      $( "#btnAcierto" ).click(function() {
-        $("#nAciertos").get(0).value++;
-      });
-
-      $( "#btnFallo" ).click(function() {
-        $("#nFallos").get(0).value++;
-      });
-    </script>
   </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/paciente/palabra.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/paciente/postura.blade.php ENDPATH**/ ?>
