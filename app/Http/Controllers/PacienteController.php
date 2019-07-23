@@ -152,16 +152,57 @@ class PacienteController extends Controller
 
     public function cara($id, $level)
     {
+        $userPA = \Auth::user()->pacienteActual;
+        $paciente = Paciente::Search($userPA)->get()->first();
+        $nombrePaciente = "";
+        $idPaciente = 0;
+        if($paciente != null){
+            $nombrePaciente = $paciente->nombrePaciente;
+            $idPaciente = $paciente->id;
+        }
+
+        $userActual = \Auth::user();
+        $userActual->pacienteActual = $id;
+        $userActual->save();
+
         return view('paciente.cara')
         ->with('id',$id)
-        ->with('level',$level);
+        ->with('level',$level)
+        ->with('nombrePaciente' , $nombrePaciente)
+        ->with('idPaciente' , $idPaciente);
     }
 
     public function sonido($id, $level)
     {
+        $userPA = \Auth::user()->pacienteActual;
+        $paciente = Paciente::Search($userPA)->get()->first();
+        $nombrePaciente = "";
+        $idPaciente = 0;
+        if($paciente != null){
+            $nombrePaciente = $paciente->nombrePaciente;
+            $idPaciente = $paciente->id;
+        }
+
+        $userActual = \Auth::user();
+        $userActual->pacienteActual = $id;
+        $userActual->save();
+
+        $sonido = "";
+
+        if($level == 1){
+            $sonido = "../../../img/slide/sonidoP.png";
+        }elseif($level == 2){
+            $sonido = "../../../img/slide/sonidoM.png";
+        }else {
+            $sonido = "../../../img/slide/sonidoB.png";
+        }
+
         return view('paciente.sonido')
         ->with('id',$id)
-        ->with('level',$level);
+        ->with('level',$level)
+        ->with('nombrePaciente' , $nombrePaciente)
+        ->with('idPaciente' , $idPaciente)
+        ->with('sonido' , $sonido);
     }
 
     public function palabra($id, $level)

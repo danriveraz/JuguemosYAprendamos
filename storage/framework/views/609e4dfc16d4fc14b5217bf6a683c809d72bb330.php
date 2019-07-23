@@ -29,13 +29,14 @@
         <a href="index.html" class="logo" ><b>JUGUEMOS &<span> APRENDAMOS</span></b></a>
         <div class="top-menu">
           <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="{{ route('logout') }}"
+            <li><a class="logout" href="<?php echo e(route('logout')); ?>"
                onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
+                <?php echo e(__('Logout')); ?>
+
               </a>
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
+              <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                <?php echo csrf_field(); ?>
               </form>
             </li>
           </ul>
@@ -44,69 +45,69 @@
       <aside>
         <div id="sidebar" class="nav-collapse ">
           <ul class="sidebar-menu" id="nav-accordion">
-            @if($nombrePaciente != "")
+            <?php if($nombrePaciente != ""): ?>
             <h5 class="centered">Trabajando con:</h5>
-            <h5 class="centered">{{$nombrePaciente}}</h5>
-            @endif
+            <h5 class="centered"><?php echo e($nombrePaciente); ?></h5>
+            <?php endif; ?>
             <li class="sub-menu">
               <a href="javascript:;">
                 <i class="fa fa-th"></i>
                 <span>Pacientes</span>
                 </a>
               <ul class="sub">
-                <li><a href="{{url('/paciente')}}">Seleccionar paciente</a>
+                <li><a href="<?php echo e(url('/paciente')); ?>">Seleccionar paciente</a>
                 </li>
               </ul>
             </li>
             <li class="sub-menu">
-              @if($level == 1)
+              <?php if($level == 1): ?>
                 <a class="active">
-              @else
+              <?php else: ?>
                 <a href="javascript:;">
-              @endif
+              <?php endif; ?>
                 <i class="fa fa-rocket"></i>
                 <span>Nivel 1 (Letra P)</span>
                 </a>
               <ul class="sub">
-                <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 1])}}" >Postura</a></li>
-                <li><a href="{{route('paciente.cara', ['id' => $idPaciente, 'level' => 1])}}">Cara</a></li>
-                <li><a href="{{route('paciente.sonido', ['id' => $idPaciente, 'level' => 1])}}">Sonido</a></li>
-                <li class="active"><a href="{{route('paciente.palabra', ['id' => $idPaciente, 'level' => 1])}}">Palabras</a></li>
-                <li><a href="{{route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 1])}}">Estadisticas</a></li>
+                <li><a href="<?php echo e(route('paciente.postura', ['id' => $idPaciente, 'level' => 1])); ?>" >Postura</a></li>
+                <li><a href="<?php echo e(route('paciente.cara', ['id' => $idPaciente, 'level' => 1])); ?>">Cara</a></li>
+                <li><a href="<?php echo e(route('paciente.sonido', ['id' => $idPaciente, 'level' => 1])); ?>">Sonido</a></li>
+                <li class="active"><a href="<?php echo e(route('paciente.palabra', ['id' => $idPaciente, 'level' => 1])); ?>">Palabras</a></li>
+                <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 1])); ?>">Estadisticas</a></li>
               </ul>
             </li>
             <li class="sub-menu">
-              @if($level == 2)
+              <?php if($level == 2): ?>
                 <a class="active">
-              @else
+              <?php else: ?>
                 <a href="javascript:;">
-              @endif
+              <?php endif; ?>
                 <i class=" fa fa-rocket"></i>
                 <span>Nivel (Letra M)</span>
                 </a>
               <ul class="sub">
-                <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 2])}}" >Postura</a></li>
-                <li><a href="{{route('paciente.cara', ['id' => $idPaciente, 'level' => 2])}}">Cara</a></li>
-                <li><a href="{{route('paciente.sonido', ['id' => $idPaciente, 'level' => 2])}}">Sonido</a></li>
-                <li><a href="{{route('paciente.palabra', ['id' => $idPaciente, 'level' => 2])}}">Palabras</a></li>
-                <li><a href="{{route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 2])}}">Estadisticas</a></li>
+                <li><a href="<?php echo e(route('paciente.postura', ['id' => $idPaciente, 'level' => 2])); ?>" >Postura</a></li>
+                <li><a href="<?php echo e(route('paciente.cara', ['id' => $idPaciente, 'level' => 2])); ?>">Cara</a></li>
+                <li><a href="<?php echo e(route('paciente.sonido', ['id' => $idPaciente, 'level' => 2])); ?>">Sonido</a></li>
+                <li><a href="<?php echo e(route('paciente.palabra', ['id' => $idPaciente, 'level' => 2])); ?>">Palabras</a></li>
+                <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 2])); ?>">Estadisticas</a></li>
               </ul>
             </li>
             <li class="sub-menu">
-              @if($level == 3)
+              <?php if($level == 3): ?>
                 <a class="active">
-              @else
+              <?php else: ?>
                 <a href="javascript:;">
-              @endif
+              <?php endif; ?>
                 <i class=" fa fa-rocket"></i>
                 <span>Nivel (Letra B)</span>
                 </a>
               <ul class="sub">
-                <li><a href="{{route('paciente.postura', ['id' => $idPaciente, 'level' => 3])}}" >Postura</a></li>
-                <li><a href="{{route('paciente.cara', ['id' => $idPaciente, 'level' => 3])}}">Cara</a></li>
-                <li><a href="{{route('paciente.sonido', ['id' => $idPaciente, 'level' => 3])}}">Sonido</a></li>
-                <li><a href="{{route('paciente.palabra', ['id' => $idPaciente, 'level' => 3])}}">Palabras</a></li>
-                <li><a href="{{route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 3])}}">Estadisticas</a></li>
+                <li><a href="<?php echo e(route('paciente.postura', ['id' => $idPaciente, 'level' => 3])); ?>" >Postura</a></li>
+                <li><a href="<?php echo e(route('paciente.cara', ['id' => $idPaciente, 'level' => 3])); ?>">Cara</a></li>
+                <li><a href="<?php echo e(route('paciente.sonido', ['id' => $idPaciente, 'level' => 3])); ?>">Sonido</a></li>
+                <li><a href="<?php echo e(route('paciente.palabra', ['id' => $idPaciente, 'level' => 3])); ?>">Palabras</a></li>
+                <li><a href="<?php echo e(route('paciente.estadisticas', ['id' => $idPaciente, 'level' => 3])); ?>">Estadisticas</a></li>
               </ul>
             </li>
           </ul>
@@ -201,3 +202,4 @@
     
   </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/paciente/cara.blade.php ENDPATH**/ ?>

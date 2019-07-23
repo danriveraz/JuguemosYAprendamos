@@ -121,15 +121,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="../../../img/postura/postura1.png" alt="Postura incorrecta 1">
+        <img src="../../../img/slide/postura1.png" alt="Postura incorrecta 1">
       </div>
 
       <div class="item">
-        <img src="../../../img/postura/postura2.png" alt="Postura incorrecta 2">
+        <img src="../../../img/slide/postura2.png" alt="Postura incorrecta 2">
       </div>
     
       <div class="item">
-        <img src="../../../img/postura/postura3.png" alt="Postura correcta">
+        <img src="../../../img/slide/postura3.png" alt="Postura correcta">
       </div>
     </div>
 
