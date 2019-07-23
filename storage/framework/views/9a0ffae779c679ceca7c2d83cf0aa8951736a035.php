@@ -17,32 +17,42 @@
       <!-- Custom styles for this template -->
       <link href="../css/style.css" rel="stylesheet">
       <link href="../css/style-responsive.css" rel="stylesheet">
-      <meta name="csrf-token" content="{{ csrf_token() }}">
+      <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     </head>
     <body>
       <div id="login-page">
-        <div class="container">                    <!--<div class="card-header">{{ __('Reset Password') }}</div>-->
-            <form class="form-login" method="POST" action="{{ route('password.email') }}">
-                @csrf
-                @if (session('status'))
+        <div class="container">                    <!--<div class="card-header"><?php echo e(__('Reset Password')); ?></div>-->
+            <form class="form-login" method="POST" action="<?php echo e(route('password.email')); ?>">
+                <?php echo csrf_field(); ?>
+                <?php if(session('status')): ?>
                     <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
+                        <?php echo e(session('status')); ?>
+
                     </div>
-                @endif
+                <?php endif; ?>
                 <h2 class="form-login-heading">Ingresa tu correo</h2>
                 <div class="login-wrap">
-                    <!--<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>-->
+                    <!--<label for="email" class="col-md-4 col-form-label text-md-right"><?php echo e(__('E-Mail Address')); ?></label>-->
                     <div>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Correo">
-                        @error('email')
+                        <input id="email" type="email" class="form-control <?php if ($errors->has('email')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('email'); ?> is-invalid <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="email" autofocus placeholder="Correo">
+                        <?php if ($errors->has('email')) :
+if (isset($message)) { $messageCache = $message; }
+$message = $errors->first('email'); ?>
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong><?php echo e($message); ?></strong>
                             </span>
-                        @enderror
+                        <?php unset($message);
+if (isset($messageCache)) { $message = $messageCache; }
+endif; ?>
                     </div>
                 <br>
                 <button class="btn btn-theme btn-block" type="submit">
-                    {{ __('Enviar') }}
+                    <?php echo e(__('Enviar')); ?>
+
                 </button>
                 <br>
                 <div class="registration">
@@ -64,3 +74,4 @@
       </script>
     </body>
 </html>
+<?php /**PATH C:\xampp\htdocs\JuguemosYAprendamos\resources\views/auth/passwords/email.blade.php ENDPATH**/ ?>

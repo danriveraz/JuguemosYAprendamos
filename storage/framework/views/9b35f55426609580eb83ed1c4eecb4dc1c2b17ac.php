@@ -82,7 +82,7 @@ endif; ?>
             </div>
             <label class="checkbox" align="center">
                 <span>
-                    <a data-toggle="modal" href="#recuperarPassword"> ¿Olvidaste tu contraseña?</a>
+                    <a data-toggle="modal" href="<?php echo e(route('password.request')); ?>"> ¿Olvidaste tu contraseña?</a>
                 </span>
                 </label>
             <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> Entrar</button>
