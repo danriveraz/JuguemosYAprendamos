@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\View;
 use App\Paciente;
 use App\Estadisticas;
 use App\User;
+use App\UserPaciente;
 
 class PacienteController extends Controller
 {
@@ -17,7 +18,16 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
+        $userActual = \Auth::user()->id;
+        $userPaciente = UserPaciente::SearchPacientes($userActual)->get();
+        $pacientes = [];
+
+        foreach ($userPaciente as $paciente) {
+            $idAux = $paciente->idPaciente;
+            $pacienteAux = Paciente::find($idAux);
+            $pacientes[] = $pacienteAux;
+        }
+        //$pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
         $userPA = \Auth::user()->pacienteActual;
         $paciente = Paciente::Search($userPA)->get()->first();
         $nombrePaciente = "";
@@ -26,7 +36,7 @@ class PacienteController extends Controller
             $nombrePaciente = $paciente->nombrePaciente;
             $idPaciente = $paciente->id;
         }
-        
+
         return view('paciente.index')
         ->with('pacientes', $pacientes)
         ->with('nombrePaciente' , $nombrePaciente)
@@ -54,6 +64,12 @@ class PacienteController extends Controller
 
 
         $paciente->save();
+
+        $userPaciente = new UserPaciente();
+        $userPaciente->idPaciente = $paciente->id;
+        $userPaciente->idUser = \Auth::user()->id;
+        $userPaciente->save();
+
         flash('Paciente creado correctamente')->success()->important();
         return redirect('paciente');
     }
@@ -221,11 +237,45 @@ class PacienteController extends Controller
         $userActual->pacienteActual = $id;
         $userActual->save();
 
+        $palabras = [];
+
+        if($level == 1) {
+            $palabras = [
+                ["palabra" => "Papá", "ruta" => "../../../img/Palabras/papa.png"],
+                ["palabra" => "Pato", "ruta" => "../../../img/Palabras/pato.png"],
+                ["palabra" => "Mapa", "ruta" => "../../../img/Palabras/mapa.png"],
+                ["palabra" => "Copa", "ruta" => "../../../img/Palabras/copa.png"],
+                ["palabra" => "Pelota", "ruta" => "../../../img/Palabras/pelota.png"],
+                ["palabra" => "Campo", "ruta" => "../../../img/Palabras/campo.png"]
+            ];
+        }else if($level == 2){
+            $palabras = [
+                ["palabra" => "Cama", "ruta" => "../../../img/Palabras/cama.png"],
+                ["palabra" => "Mamá", "ruta" => "../../../img/Palabras/mama.png"],
+                ["palabra" => "Manzana", "ruta" => "../../../img/Palabras/manzana.png"],
+                ["palabra" => "Mariposa", "ruta" => "../../../img/Palabras/mariposa.png"],
+                ["palabra" => "Mesa", "ruta" => "../../../img/Palabras/mesa.png"],
+                ["palabra" => "Moto", "ruta" => "../../../img/Palabras/moto.png"]
+            ];
+        }else {
+            $palabras = [
+                ["palabra" => "Bailar", "ruta" => "../../../img/Palabras/bailar.png"],
+                ["palabra" => "Ballena", "ruta" => "../../../img/Palabras/ballena.png"],
+                ["palabra" => "Barco", "ruta" => "../../../img/Palabras/barco.png"],
+                ["palabra" => "Bebé", "ruta" => "../../../img/Palabras/bebe.png"],
+                ["palabra" => "Bicicleta", "ruta" => "../../../img/Palabras/bicicleta.png"],
+                ["palabra" => "Burro", "ruta" => "../../../img/Palabras/burro.png"]
+            ];
+        }
+
+
+
         return view('paciente.palabra')
         ->with('id',$id)
         ->with('level',$level)
         ->with('nombrePaciente' , $nombrePaciente)
-        ->with('idPaciente' , $idPaciente);
+        ->with('idPaciente' , $idPaciente)
+        ->with('palabras' , $palabras);
     }
 
     public function createstics(Request $request, $id, $level){

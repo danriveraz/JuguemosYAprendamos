@@ -24,7 +24,7 @@
   <link href="../../../css/carousel.css" rel="stylesheet">
 </head>
   <body>
-    <section id="container">
+    <section id="container"  class="therapy">
       <header class="header black-bg" style="text-align: center;">
         <a href="index.html" class="logo" ><b>JUGUEMOS &<span> APRENDAMOS</span></b></a>
         <div class="top-menu">

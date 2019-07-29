@@ -112,37 +112,64 @@
           </ul>
         </div>
       </aside>
-      <section id="main-content">
+      <section id="main-content" class="therapy">
         <section class="wrapper">
           <form  id="formPalabras"  method="GET"  action="<?php echo e(route('paciente.createstics', ['id' => $idPaciente, 'level' => 1])); ?>">
-            <div id="primerasImagenes" class="text-center" style="display: block;">
+            <br><br>
+            <div id="img1" class="text-center" style="display: block;" >
               <a>
-                <img src="../../../img/Palabras/papa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
+                <img src="<?php echo e($palabras[0]['ruta']); ?>" alt="Imagen <?php echo e($palabras[0]['palabra']); ?>" width="300" height="300" style="border: 2px solid;">
               </a>
+              <h3 class="text-center"><?php echo e($palabras[0]["palabra"]); ?></h3>
+            </div>
+            <div id="img2" class="text-center" style="display: none;" >
               <a>
-                <img src="../../../img/Palabras/pato.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
+                <img src="<?php echo e($palabras[1]['ruta']); ?>" alt="Imagen <?php echo e($palabras[1]['palabra']); ?>" width="300" height="300" style="border: 2px solid;">
               </a>
+              <h3 class="text-center"><?php echo e($palabras[1]["palabra"]); ?></h3>
+            </div>
+            <div id="img3" class="text-center" style="display: none;" >
               <a>
-                <img src="../../../img/Palabras/pelota.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
+                <img src="<?php echo e($palabras[2]['ruta']); ?>" alt="Imagen <?php echo e($palabras[2]['palabra']); ?>" width="300" height="300" style="border: 2px solid;">
+              </a>
+              <h3 class="text-center"><?php echo e($palabras[2]["palabra"]); ?></h3>
+            </div>
+            <div id="img4" class="text-center" style="display: none;" >
+              <a>
+                <img src="<?php echo e($palabras[3]['ruta']); ?>" alt="Imagen <?php echo e($palabras[3]['palabra']); ?>" width="300" height="300" style="border: 2px solid;">
+              </a>
+              <h3 class="text-center"><?php echo e($palabras[3]["palabra"]); ?></h3>
+            </div>
+            <div id="img5" class="text-center" style="display: none;" >
+              <a>
+                <img src="<?php echo e($palabras[4]['ruta']); ?>" alt="Imagen <?php echo e($palabras[4]['palabra']); ?>" width="300" height="300" style="border: 2px solid;">
+              </a>
+              <h3 class="text-center"><?php echo e($palabras[4]["palabra"]); ?></h3>
+            </div>
+            <div id="img6" class="text-center" style="display: none;" >
+              <a>
+                <img src="<?php echo e($palabras[5]['ruta']); ?>" alt="Imagen <?php echo e($palabras[5]['palabra']); ?>" width="300" height="300" style="border: 2px solid;">
+              </a>
+              <h3 class="text-center"><?php echo e($palabras[5]["palabra"]); ?></h3>
+            </div>
+            <br>
+
+<button onclick="responsiveVoice.speak('The Internet is a series of tubes!');" 
+type="button" value="Play">Play</button>
+
+            <div class="text-center" >
+              <a >
+                <img src="../../../img/sound.png" alt="sonido" width="70" height="70">
+                <input id="speak" type="text" value="<?php echo e($palabras[0]['palabra']); ?>" hidden="true">
               </a>
             </div>
-            <div id="segundasImagenes" class="text-center" style="display: none;">
-              <a>
-                <img src="../../../img/Palabras/mapa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/copa.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-              <a>
-                <img src="../../../img/Palabras/campo.png" border="1" alt="Este es el ejemplo de un texto alternativo" width="300" height="300">
-              </a>
-            </div>
+
+            <br><br>
             <div class="text-center">
               <button id="btnAcierto" type="button" class="btn btn-theme" title="Siguiente"> ¡Muy bien! </button>
               <button id="btnFallo" type="button" class="btn btn-theme" title="Siguiente"> Intenta de nuevo </button>
               <button id="btnSiguiente" type="button" class="btn btn-theme" title="Siguiente"> Siguiente </button>
               <button id="btnFinalizar" type="submit" class="btn btn-theme" title="Siguiente"> Finalizar </button>
-              <input id="indicadorCambio" type="text" value="0" hidden="true">
               <input id="nAciertos" name="nAciertos" type="number" value="0" hidden="true">
               <input id="nFallos" name="nFallos" type="number" value="0" hidden="true">
             </div>
@@ -180,18 +207,62 @@
     <!--common script for all pages-->
     <script src="../../../lib/common-scripts.js"></script>
     <!--script for this page-->
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=JTvb3fBh"></script>
+
+   
     
     <script type="text/javascript">
       $( "#btnSiguiente" ).click(function() {
-        if($("#primerasImagenes").val() == 0){
-          $("#primerasImagenes").css("display", "none");
-          $("#segundasImagenes").css("display", "block");
-          $("#primerasImagenes").val(1);
-        }else{
-          $("#primerasImagenes").css("display", "block");
-          $("#segundasImagenes").css("display", "none");
-          $("#primerasImagenes").val(0);
-        }  
+        if($("#img1").val() == 0){
+          $("#img1").css("display", "none");
+          $("#img2").css("display", "block");
+          $("#img3").css("display", "none");
+          $("#img4").css("display", "none");
+          $("#img5").css("display", "none");
+          $("#img6").css("display", "none");
+          $("#img1").val(1);
+        }else if($("#img1").val() == 1){
+          $("#img1").css("display", "none");
+          $("#img2").css("display", "none");
+          $("#img3").css("display", "block");
+          $("#img4").css("display", "none");
+          $("#img5").css("display", "none");
+          $("#img6").css("display", "none");
+          $("#img1").val(2);
+        }else if($("#img1").val() == 2){
+          $("#img1").css("display", "none");
+          $("#img2").css("display", "none");
+          $("#img3").css("display", "none");
+          $("#img4").css("display", "block");
+          $("#img5").css("display", "none");
+          $("#img6").css("display", "none");
+          $("#img1").val(3);
+        }else if($("#img1").val() == 3){
+          $("#img1").css("display", "none");
+          $("#img2").css("display", "none");
+          $("#img3").css("display", "none");
+          $("#img4").css("display", "none");
+          $("#img5").css("display", "block");
+          $("#img6").css("display", "none");
+          $("#img1").val(4);
+        }else if($("#img1").val() == 4){
+          $("#img1").css("display", "none");
+          $("#img2").css("display", "none");
+          $("#img3").css("display", "none");
+          $("#img4").css("display", "none");
+          $("#img5").css("display", "none");
+          $("#img6").css("display", "block");
+          $("#img1").val(5);
+        }else {
+          $("#img1").css("display", "block");
+          $("#img2").css("display", "none");
+          $("#img3").css("display", "none");
+          $("#img4").css("display", "none");
+          $("#img5").css("display", "none");
+          $("#img6").css("display", "none");
+          $("#img1").val(0);
+        }
       });
 
       $( "#btnAcierto" ).click(function() {
