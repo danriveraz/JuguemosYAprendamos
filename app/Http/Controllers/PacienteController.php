@@ -18,8 +18,8 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $userActual = \Auth::user()->id;
-        $userPaciente = UserPaciente::SearchPacientes($userActual)->get();
+        $userActual = \Auth::user();
+        $userPaciente = UserPaciente::SearchPacientes($userActual->id)->get();
         $pacientes = [];
 
         foreach ($userPaciente as $paciente) {
@@ -28,7 +28,7 @@ class PacienteController extends Controller
             $pacientes[] = $pacienteAux;
         }
         //$pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
-        $userPA = \Auth::user()->pacienteActual;
+        $userPA = $userActual->pacienteActual;
         $paciente = Paciente::Search($userPA)->get()->first();
         $nombrePaciente = "";
         $idPaciente = 0;
@@ -36,7 +36,6 @@ class PacienteController extends Controller
             $nombrePaciente = $paciente->nombrePaciente;
             $idPaciente = $paciente->id;
         }
-
         return view('paciente.index')
         ->with('pacientes', $pacientes)
         ->with('nombrePaciente' , $nombrePaciente)
@@ -377,10 +376,22 @@ class PacienteController extends Controller
      */
     public function destroy($id)
     {
-        $paciente = Paciente::find($id);
-        $paciente->delete();
+        $userActual = \Auth::user();
+        if ($userActual->pacienteActual == $id) {
+            $userActual->pacienteActual = 0;
+            $userActual->save();
+            flash('Se estaba trabajando con el paciente. Hemos quitado la selección del paciente, por favor <b>intente eliminarlo de nuevo.<b>')->error()->important();
+            return redirect('paciente');
+        }else{
 
-        flash('Paciente eliminado correctamente')->success()->important();
-        return redirect('paciente');
+            $userPaciente = UserPaciente::SearchPaciente($id);
+            $userPaciente->delete();
+
+            $paciente = Paciente::find($id);
+            $paciente->delete();
+
+            flash('Paciente eliminado correctamente')->success()->important();
+            return redirect('paciente');
+        }
     }
 }

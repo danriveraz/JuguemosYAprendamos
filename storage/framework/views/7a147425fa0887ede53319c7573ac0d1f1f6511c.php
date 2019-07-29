@@ -154,9 +154,6 @@
             </div>
             <br>
 
-<button onclick="responsiveVoice.speak('The Internet is a series of tubes!');" 
-type="button" value="Play">Play</button>
-
             <div class="text-center" >
               <a >
                 <img src="../../../img/sound.png" alt="sonido" width="70" height="70">
