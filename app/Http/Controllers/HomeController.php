@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect('paciente');
-        //view('paciente');
+        $userAcutal = \Auth::user();
+        dd($userAcutal->passTipoUsuario == 0);
+        if($userAcutal->tipoUsuario == "Terapia en casa"){
+            return view('paciente.postura')
+            ->with('id',0)
+            ->with('level',1)
+            ->with('nombrePaciente' , "")
+            ->with('idPaciente' , 0);
+        }else{
+            return view('paciente');
+        }
     }
 }

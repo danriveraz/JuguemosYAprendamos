@@ -19,27 +19,40 @@ class PacienteController extends Controller
     public function index()
     {
         $userActual = \Auth::user();
-        $userPaciente = UserPaciente::SearchPacientes($userActual->id)->get();
-        $pacientes = [];
 
-        foreach ($userPaciente as $paciente) {
-            $idAux = $paciente->idPaciente;
-            $pacienteAux = Paciente::find($idAux);
-            $pacientes[] = $pacienteAux;
+        if($userActual->passTipoUsuario != 0){
+
+            $userPaciente = UserPaciente::SearchPacientes($userActual->id)->get();
+            $pacientes = [];
+
+            foreach ($userPaciente as $paciente) {
+                $idAux = $paciente->idPaciente;
+                $pacienteAux = Paciente::find($idAux);
+                $pacientes[] = $pacienteAux;
+            }
+            //$pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
+            $userPA = $userActual->pacienteActual;
+            $paciente = Paciente::Search($userPA)->get()->first();
+            $nombrePaciente = "";
+            $idPaciente = 0;
+            if($paciente != null){
+                $nombrePaciente = $paciente->nombrePaciente;
+                $idPaciente = $paciente->id;
+            }
+            return view('paciente.index')
+            ->with('pacientes', $pacientes)
+            ->with('nombrePaciente' , $nombrePaciente)
+            ->with('idPaciente' , $idPaciente);
+        }else{
+            $nombrePaciente = "";
+            $idPaciente = 0;
+            
+            return view('paciente.postura')
+            ->with('id',0)
+            ->with('level',1)
+            ->with('nombrePaciente' , "")
+            ->with('idPaciente' , 1);
         }
-        //$pacientes = Paciente::orderBy('nombrePaciente','ASC')->get();
-        $userPA = $userActual->pacienteActual;
-        $paciente = Paciente::Search($userPA)->get()->first();
-        $nombrePaciente = "";
-        $idPaciente = 0;
-        if($paciente != null){
-            $nombrePaciente = $paciente->nombrePaciente;
-            $idPaciente = $paciente->id;
-        }
-        return view('paciente.index')
-        ->with('pacientes', $pacientes)
-        ->with('nombrePaciente' , $nombrePaciente)
-        ->with('idPaciente' , $idPaciente);
     }
 
     /**
@@ -154,10 +167,6 @@ class PacienteController extends Controller
             $idPaciente = $paciente->id;
         }
 
-        $userActual = \Auth::user();
-        $userActual->pacienteActual = $id;
-        $userActual->save();
-
         return view('paciente.postura')
         ->with('id',$id)
         ->with('level',$level)
@@ -175,11 +184,6 @@ class PacienteController extends Controller
             $nombrePaciente = $paciente->nombrePaciente;
             $idPaciente = $paciente->id;
         }
-
-        $userActual = \Auth::user();
-        $userActual->pacienteActual = $id;
-        $userActual->save();
-
         return view('paciente.cara')
         ->with('id',$id)
         ->with('level',$level)
@@ -197,10 +201,6 @@ class PacienteController extends Controller
             $nombrePaciente = $paciente->nombrePaciente;
             $idPaciente = $paciente->id;
         }
-
-        $userActual = \Auth::user();
-        $userActual->pacienteActual = $id;
-        $userActual->save();
 
         $sonido = "";
 
@@ -231,10 +231,6 @@ class PacienteController extends Controller
             $nombrePaciente = $paciente->nombrePaciente;
             $idPaciente = $paciente->id;
         }
-
-        $userActual = \Auth::user();
-        $userActual->pacienteActual = $id;
-        $userActual->save();
 
         $palabras = [];
 

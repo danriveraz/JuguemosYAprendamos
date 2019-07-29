@@ -110,8 +110,8 @@ class RegisterController extends Controller
                 $user->passTipoUsuario = $request->regCode;
             }
 
-            $user->token = "esto se debe eliminar";
-            $user->nombreCompleto = "Terapeuta";
+            $user->nombreCompleto = "";
+            $user->token = "";
             $user->pacienteActual = 0;
             $user->remember_token = str_random(100);
             $user->save();
