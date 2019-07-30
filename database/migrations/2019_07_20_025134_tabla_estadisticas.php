@@ -28,10 +28,10 @@ class TablaEstadisticas extends Migration
             $table->integer('nNivel');
 
             $table->integer('idUser')->unsigned();
-            $table->foreign('idUser')->references('id')->on('users');
+            //$table->foreign('idUser')->references('id')->on('users');
 
             $table->integer('idPaciente')->unsigned();
-            $table->foreign('idPaciente')->references('id')->on('paciente');
+            //$table->foreign('idPaciente')->references('id')->on('paciente');
             
             $table->timestamps();
         });

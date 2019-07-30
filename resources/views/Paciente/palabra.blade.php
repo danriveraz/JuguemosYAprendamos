@@ -113,7 +113,7 @@
       </aside>
       <section id="main-content" class="therapy">
         <section class="wrapper">
-          <form  id="formPalabras"  method="GET"  action="{{route('paciente.createstics', ['id' => $idPaciente, 'level' => 1])}}">
+          <form  id="formPalabras"  method="GET"  action="{{route('paciente.createstics', ['id' => $idPaciente, 'level' => $level])}}">
             <br><br>
             <div id="img1" class="text-center" style="display: block;" >
               <a>
@@ -153,18 +153,20 @@
             </div>
             <br>
 
+            <!--
             <div class="text-center" >
               <a >
                 <img src="../../../img/sound.png" alt="sonido" width="70" height="70">
                 <input id="speak" type="text" value="{{$palabras[0]['palabra']}}" hidden="true">
               </a>
             </div>
+            -->
 
             <br><br>
             <div class="text-center">
-              <button id="btnAcierto" type="button" class="btn btn-theme" title="Siguiente"> ¡Muy bien! </button>
               <button id="btnFallo" type="button" class="btn btn-theme" title="Siguiente"> Intenta de nuevo </button>
-              <button id="btnSiguiente" type="button" class="btn btn-theme" title="Siguiente"> Siguiente </button>
+              <button id="btnAcierto" type="button" class="btn btn-theme" title="Siguiente"> ¡Muy bien! </button>
+              <!--<button id="btnSiguiente" type="button" class="btn btn-theme" title="Siguiente"> Siguiente </button>-->
               <button id="btnFinalizar" type="submit" class="btn btn-theme" title="Siguiente"> Finalizar </button>
               <input id="nAciertos" name="nAciertos" type="number" value="0" hidden="true">
               <input id="nFallos" name="nFallos" type="number" value="0" hidden="true">
@@ -203,13 +205,10 @@
     <!--common script for all pages-->
     <script src="../../../lib/common-scripts.js"></script>
     <!--script for this page-->
-
-    <script src="https://code.responsivevoice.org/responsivevoice.js?key=JTvb3fBh"></script>
-
    
     
     <script type="text/javascript">
-      $( "#btnSiguiente" ).click(function() {
+      $( "#btnAcierto" ).click(function() {
         if($("#img1").val() == 0){
           $("#img1").css("display", "none");
           $("#img2").css("display", "block");
@@ -257,7 +256,10 @@
           $("#img4").css("display", "none");
           $("#img5").css("display", "none");
           $("#img6").css("display", "none");
-          $("#img1").val(0);
+          document.getElementById("btnAcierto").style.visibility = "hidden";
+          document.getElementById("btnFallo").style.visibility = "hidden";
+          $("#btnAcierto").display("hidden");
+          $("#btnFallo").display("hidden");
         }
       });
 

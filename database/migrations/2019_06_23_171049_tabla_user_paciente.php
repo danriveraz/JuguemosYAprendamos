@@ -15,12 +15,12 @@ class TablaUserPaciente extends Migration
     {
         Schema::create('userPaciente', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
-            $table->integer('idPaciente')->unsigned();
-            $table->foreign('idPaciente')->references('id')->on('paciente');
 
             $table->integer('idUser')->unsigned();
-            $table->foreign('idUser')->references('id')->on('users');
+            //$table->foreign('idUser')->references('id')->on('users');
+
+            $table->integer('idPaciente')->unsigned();
+            //$table->foreign('idPaciente')->references('id')->on('paciente');
             
             $table->timestamps();
         });

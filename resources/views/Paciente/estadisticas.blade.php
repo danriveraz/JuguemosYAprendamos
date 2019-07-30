@@ -127,21 +127,21 @@
         <section class="wrapper">
 
           @if($primerIntentoBuenos != 0 || $primerIntentoFallos != 0)
-            <div id="primerIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+            <div id="primerIntento" style=" display: inline-block; width: 32%; height: 500px;"></div>
           @else
-            <div id="primerIntento" style=" display: inline-block; width: 550px; height: 500px; display: none"></div>
+            <div id="primerIntento" style=" display: inline-block; width: 32%; height: 500px; display: none"></div>
           @endif
 
           @if($primerIntentoBuenos != 0 || $primerIntentoFallos != 0)
-            <div id="penultimoIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+            <div id="penultimoIntento" style=" display: inline-block; width: 32%; height: 500px;"></div>
           @else
-            <div id="penultimoIntento" style=" display: inline-block; width: 550px; height: 500px; display: none"></div>
+            <div id="penultimoIntento" style=" display: inline-block; width: 32%; height: 500px; display: none"></div>
           @endif
 
           @if($primerIntentoBuenos != 0 || $primerIntentoFallos != 0)
-            <div id="ultimoIntento" style=" display: inline-block; width: 550px; height: 500px;"></div>
+            <div id="ultimoIntento" style=" display: inline-block; width: 32%; height: 500px;"></div>
           @else
-            <div id="ultimoIntento" style=" display: inline-block; width: 550px; height: 500px; display: none;"></div>
+            <div id="ultimoIntento" style=" display: inline-block; width: 32%; height: 500px; display: none;"></div>
           @endif
 
           <div id="vacio" class="text-center" style="display: none;">

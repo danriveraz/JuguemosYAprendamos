@@ -294,13 +294,11 @@ class PacienteController extends Controller
             $estadisticas->nNivel = $nNivel;
             $estadisticas->idUser = $idUser;
             $estadisticas->idPaciente = $idPaciente;
-            dd("primer if");
-            //$estadisticas->save();
+            $estadisticas->save();
         }else{
             if($existe->ultimoIntentoBuenos == 0){
                 $existe->ultimoIntentoBuenos = $aciertos;
                 $existe->ultimoIntentoFallos = $fallos;
-                //dd("segundo if");
                 $existe->save();
             }else{
                 $existe->penultimoIntentoBuenos = $existe->ultimoIntentoBuenos;
@@ -311,7 +309,7 @@ class PacienteController extends Controller
             }
         }
 
-        flash('Nivel 1 finalizado correctamente')->success()->important();
+        flash('Nivel finalizado correctamente')->success()->important();
         return redirect('paciente');
     }
 
