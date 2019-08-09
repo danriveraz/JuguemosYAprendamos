@@ -154,14 +154,49 @@
             </div>
             <br>
 
-            <!--
+            <!--<audio id="audio">
+              <source src="" type="audio/ogg">
+              Your browser does not support the audio element.
+            </audio>
+
+            <button onclick="playAudio()" type="button">Play Audio</button>
+
+            
             <div class="text-center" >
-              <a >
+              <a onclick="playAudio()">
                 <img src="../../../img/sound.png" alt="sonido" width="70" height="70">
                 <input id="speak" type="text" value="<?php echo e($palabras[0]['palabra']); ?>" hidden="true">
               </a>
-            </div>
-            -->
+            </div>-->
+
+            
+              <audio id="audio0">
+                <source id="sonido" src="<?php echo e($palabras[0]['audio']); ?>" type="audio/ogg">
+              </audio>
+              <audio id="audio1">
+                <source id="sonido" src="<?php echo e($palabras[1]['audio']); ?>" type="audio/ogg">
+              </audio>
+              <audio id="audio2">
+                <source id="sonido" src="<?php echo e($palabras[2]['audio']); ?>" type="audio/ogg">
+              </audio>
+              <audio id="audio3">
+                <source id="sonido" src="<?php echo e($palabras[3]['audio']); ?>" type="audio/ogg">
+              </audio>
+              <audio id="audio4">
+                <source id="sonido" src="<?php echo e($palabras[4]['audio']); ?>" type="audio/ogg">
+              </audio>
+              <audio id="audio5">
+                <source id="sonido" src="<?php echo e($palabras[5]['audio']); ?>" type="audio/ogg">
+              </audio>
+              
+              <button id="btn0" onclick="playAudio(0)" type="button" class="btn btn-theme">Play</button>
+              <button id="btn1" onclick="playAudio(1)" type="button" class="btn btn-theme" style="display:none;">Play</button>
+              <button id="btn2" onclick="playAudio(2)" type="button" class="btn btn-theme" style="display:none;">Play</button>
+              <button id="btn3" onclick="playAudio(3)" type="button" class="btn btn-theme" style="display:none;">Play</button>
+              <button id="btn4" onclick="playAudio(4)" type="button" class="btn btn-theme" style="display:none;">Play</button>
+              <button id="btn5" onclick="playAudio(5)" type="button" class="btn btn-theme" style="display:none;">Play</button>
+            
+            
 
             <br><br>
             <div class="text-center">
@@ -187,6 +222,14 @@
         </div>
       </footer>
     </section>
+
+    <script>
+
+    function playAudio(id) {
+      var x = document.getElementById("audio"+id);
+      x.play(); 
+    }
+    </script>
 
     <script src="../../../lib/jquery/jquery.min.js"></script>
     <script src="../../../lib/bootstrap/js/bootstrap.min.js"></script>
@@ -218,6 +261,8 @@
           $("#img5").css("display", "none");
           $("#img6").css("display", "none");
           $("#img1").val(1);
+          document.getElementById("btn0").style.display = "none";
+          document.getElementById("btn1").style.display = "block";
         }else if($("#img1").val() == 1){
           $("#img1").css("display", "none");
           $("#img2").css("display", "none");
@@ -226,6 +271,8 @@
           $("#img5").css("display", "none");
           $("#img6").css("display", "none");
           $("#img1").val(2);
+          document.getElementById("btn1").style.display = "none";
+          document.getElementById("btn2").style.display = "block";
         }else if($("#img1").val() == 2){
           $("#img1").css("display", "none");
           $("#img2").css("display", "none");
@@ -234,6 +281,8 @@
           $("#img5").css("display", "none");
           $("#img6").css("display", "none");
           $("#img1").val(3);
+          document.getElementById("btn2").style.display = "none";
+          document.getElementById("btn3").style.display = "block";
         }else if($("#img1").val() == 3){
           $("#img1").css("display", "none");
           $("#img2").css("display", "none");
@@ -242,6 +291,8 @@
           $("#img5").css("display", "block");
           $("#img6").css("display", "none");
           $("#img1").val(4);
+          document.getElementById("btn3").style.display = "none";
+          document.getElementById("btn4").style.display = "block";
         }else if($("#img1").val() == 4){
           $("#img1").css("display", "none");
           $("#img2").css("display", "none");
@@ -250,17 +301,12 @@
           $("#img5").css("display", "none");
           $("#img6").css("display", "block");
           $("#img1").val(5);
+          document.getElementById("btn4").style.display = "none";
+          document.getElementById("btn5").style.display = "block";
         }else {
-          $("#img1").css("display", "block");
-          $("#img2").css("display", "none");
-          $("#img3").css("display", "none");
-          $("#img4").css("display", "none");
-          $("#img5").css("display", "none");
-          $("#img6").css("display", "none");
+          
           document.getElementById("btnAcierto").style.visibility = "hidden";
           document.getElementById("btnFallo").style.visibility = "hidden";
-          $("#btnAcierto").display("hidden");
-          $("#btnFallo").display("hidden");
         }
       });
 

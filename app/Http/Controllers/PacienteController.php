@@ -236,30 +236,30 @@ class PacienteController extends Controller
 
         if($level == 1) {
             $palabras = [
-                ["palabra" => "Papá", "ruta" => "../../../img/Palabras/papa.png"],
-                ["palabra" => "Pato", "ruta" => "../../../img/Palabras/pato.png"],
-                ["palabra" => "Mapa", "ruta" => "../../../img/Palabras/mapa.png"],
-                ["palabra" => "Copa", "ruta" => "../../../img/Palabras/copa.png"],
-                ["palabra" => "Pelota", "ruta" => "../../../img/Palabras/pelota.png"],
-                ["palabra" => "Campo", "ruta" => "../../../img/Palabras/campo.png"]
+                ["palabra" => "Papá", "ruta" => "../../../img/Palabras/papa.png", "audio" => "../../../audio/papa.ogg"],
+                ["palabra" => "Pato", "ruta" => "../../../img/Palabras/pato.png", "audio" => "../../../audio/pato.ogg"],
+                ["palabra" => "Mapa", "ruta" => "../../../img/Palabras/mapa.png", "audio" => "../../../audio/mapa.ogg"],
+                ["palabra" => "Copa", "ruta" => "../../../img/Palabras/copa.png", "audio" => "../../../audio/copa.ogg"],
+                ["palabra" => "Pelota", "ruta" => "../../../img/Palabras/pelota.png", "audio" => "../../../audio/pelota.ogg"],
+                ["palabra" => "Campo", "ruta" => "../../../img/Palabras/campo.png", "audio" => "../../../audio/campo.ogg"]
             ];
         }else if($level == 2){
             $palabras = [
-                ["palabra" => "Cama", "ruta" => "../../../img/Palabras/cama.png"],
-                ["palabra" => "Mamá", "ruta" => "../../../img/Palabras/mama.png"],
-                ["palabra" => "Manzana", "ruta" => "../../../img/Palabras/manzana.png"],
-                ["palabra" => "Mariposa", "ruta" => "../../../img/Palabras/mariposa.png"],
-                ["palabra" => "Mesa", "ruta" => "../../../img/Palabras/mesa.png"],
-                ["palabra" => "Moto", "ruta" => "../../../img/Palabras/moto.png"]
+                ["palabra" => "Cama", "ruta" => "../../../img/Palabras/cama.png", "audio" => "../../../audio/cama.ogg"],
+                ["palabra" => "Mamá", "ruta" => "../../../img/Palabras/mama.png", "audio" => "../../../audio/mama.ogg"],
+                ["palabra" => "Manzana", "ruta" => "../../../img/Palabras/manzana.png", "audio" => "../../../audio/manzana.ogg"],
+                ["palabra" => "Mariposa", "ruta" => "../../../img/Palabras/mariposa.png", "audio" => "../../../audio/mariposa.ogg"],
+                ["palabra" => "Mesa", "ruta" => "../../../img/Palabras/mesa.png", "audio" => "../../../audio/mesa.ogg"],
+                ["palabra" => "Moto", "ruta" => "../../../img/Palabras/moto.png", "audio" => "../../../audio/moto.ogg"]
             ];
         }else {
             $palabras = [
-                ["palabra" => "Bailar", "ruta" => "../../../img/Palabras/bailar.png"],
-                ["palabra" => "Ballena", "ruta" => "../../../img/Palabras/ballena.png"],
-                ["palabra" => "Barco", "ruta" => "../../../img/Palabras/barco.png"],
-                ["palabra" => "Bebé", "ruta" => "../../../img/Palabras/bebe.png"],
-                ["palabra" => "Bicicleta", "ruta" => "../../../img/Palabras/bicicleta.png"],
-                ["palabra" => "Burro", "ruta" => "../../../img/Palabras/burro.png"]
+                ["palabra" => "Bailar", "ruta" => "../../../img/Palabras/bailar.png", "audio" => "../../../audio/bailar.ogg"],
+                ["palabra" => "Ballena", "ruta" => "../../../img/Palabras/ballena.png", "audio" => "../../../audio/ballena.ogg"],
+                ["palabra" => "Barco", "ruta" => "../../../img/Palabras/barco.png", "audio" => "../../../audio/barco.ogg"],
+                ["palabra" => "Bebé", "ruta" => "../../../img/Palabras/bebe.png", "audio" => "../../../audio/bebe.ogg"],
+                ["palabra" => "Bicicleta", "ruta" => "../../../img/Palabras/bicicleta.png", "audio" => "../../../audio/bicicleta.ogg"],
+                ["palabra" => "Burro", "ruta" => "../../../img/Palabras/burro.png", "audio" => "../../../audio/burro.ogg"]
             ];
         }
 
